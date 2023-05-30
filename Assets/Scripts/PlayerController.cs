@@ -6,21 +6,29 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D _rb;
     private bool _jumpCommand;
-    private bool _isWallSliding;
-    [SerializeField] private float _jumpPower = 3.0f;
+    private bool _isGrounded;
     private bool _leftCommand;
     private bool _rightCommand;
-    [SerializeField] private float _runSpeed = 1.0f;
-    [SerializeField] private float _wallSlidingSpeed = 3.0f;
+    //private bool _isWallSliding;
+    private float _buttonPressedTime;
 
+    [SerializeField] private float _runSpeed = 1.0f;
+    [SerializeField] private float _jumpHeight = 3.0f;
+
+    [SerializeField] private float _gravityScale = 10.0f;
+    [SerializeField] private float _gravityFallingScale = 50.0f;
+    [SerializeField] private float _buttonSpacePressedWindow = 2.0f;
+
+    [SerializeField] private float _wallSlidingSpeed = 3.0f;
+    
+    [SerializeField] private LayerMask groundMask;
     [SerializeField] private Transform _isGroundedPosition;
     [SerializeField] private Vector2 _isGroundedSize;
-    [SerializeField] private LayerMask groundMask;
-
+    
+    [SerializeField] private LayerMask wallMask;
     [SerializeField] private Transform _isWallPosition;
     [SerializeField] private Vector2 _isWallSize;
-    [SerializeField] private LayerMask wallMask;
-
+    
     // Start is called before the first frame update
     private void Start()
     {
@@ -32,7 +40,10 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
         {
-             _jumpCommand = true;
+            _rb.gravityScale = _gravityScale;
+            
+            _jumpCommand = true;
+            _buttonPressedTime = 0;
         }
 
         if (Input.GetKey(KeyCode.A))
@@ -44,32 +55,69 @@ public class PlayerController : MonoBehaviour
             _rightCommand = true;
         }
 
-       wallSlided();
+        wallSlided();
+        _isGrounded = isGrounded();
     }
 
     private void FixedUpdate()
     {
         if (_jumpCommand)
         {
-            _rb.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
-            _jumpCommand = false;
+            _buttonPressedTime += Time.deltaTime;
+
+            if (_buttonPressedTime > _buttonSpacePressedWindow || Input.GetKeyUp(KeyCode.Space))
+            {
+                _jumpCommand = false;
+            }
+            else
+            {
+                float jumpforce = Mathf.Sqrt(_jumpHeight * (Physics2D.gravity.y * _rb.gravityScale) * -2) * _rb.mass;
+                _rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
+            }
+
+            if (_rb.velocity.y < 0 || !_jumpCommand)
+            {
+                _rb.gravityScale = _gravityFallingScale;
+            }
         }
 
-        if (_leftCommand)
+        if (!isGrounded())
         {
-            _rb.velocity = new Vector2(-_runSpeed, _rb.velocity.y);
-            _leftCommand = false;
-            Quaternion rotation = transform.localRotation;
-            rotation.y = 180;
-            transform.localRotation = rotation;
+            if (_leftCommand)
+            {
+                _rb.AddForce(Vector2.left * 10, ForceMode2D.Impulse);
+                _leftCommand = false;
+                Quaternion rotation = transform.localRotation;
+                rotation.y = 180;
+                transform.localRotation = rotation;
+            }
+            else if (_rightCommand)
+            {
+                _rb.AddForce(Vector2.right * 10, ForceMode2D.Impulse);
+                _rightCommand = false;
+                Quaternion rotation = transform.localRotation;
+                rotation.y = 0;
+                transform.localRotation = rotation;
+            }
         }
-        else if (_rightCommand)
+        else
         {
-            _rb.velocity = new Vector2(_runSpeed, _rb.velocity.y);
-            _rightCommand = false;
-            Quaternion rotation = transform.localRotation;
-            rotation.y = 0;
-            transform.localRotation = rotation;
+            if (_leftCommand)
+            {
+                _rb.velocity = new Vector2(-_runSpeed, _rb.velocity.y);
+                _leftCommand = false;
+                Quaternion rotation = transform.localRotation;
+                rotation.y = 180;
+                transform.localRotation = rotation;
+            }
+            else if (_rightCommand)
+            {
+                _rb.velocity = new Vector2(_runSpeed, _rb.velocity.y);
+                _rightCommand = false;
+                Quaternion rotation = transform.localRotation;
+                rotation.y = 0;
+                transform.localRotation = rotation;
+            }
         }
     }
 
@@ -87,12 +135,12 @@ public class PlayerController : MonoBehaviour
     {
         if(isWalled() && !isGrounded() && (_leftCommand || _rightCommand))
         {
-            _isWallSliding = true;
+            //_isWallSliding = true;
             _rb.velocity = new Vector2(_rb.velocity.x, Mathf.Clamp(_rb.velocity.y, -_wallSlidingSpeed, float.MaxValue));
         }
         else
         {
-            _isWallSliding = false;
+            //_isWallSliding = false;
         }
     }
 
