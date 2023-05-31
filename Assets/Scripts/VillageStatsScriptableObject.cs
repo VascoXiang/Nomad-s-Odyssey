@@ -8,11 +8,11 @@ public class VillageStatsScriptableObject : ScriptableObject
 {
     private int wood;
     private int iron;
-    private StructureStatsScriptableObject ironMine;
-    private StructureStatsScriptableObject market;
-    private StructureStatsScriptableObject mainBuilding;
-    private StructureStatsScriptableObject sawmill;
-    private StructureStatsScriptableObject wall;
+    private StructureScriptableObject ironMine;
+    private StructureScriptableObject market;
+    private StructureScriptableObject mainBuilding;
+    private StructureScriptableObject sawmill;
+    private StructureScriptableObject wall;
 
     // Start is called before the first frame update
     public void EarlyGameStart()

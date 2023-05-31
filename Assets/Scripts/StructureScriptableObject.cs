@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 [CreateAssetMenu(fileName = "StructureStats ScriptableObject", menuName = "StructureStats ScriptableObject")]
-public class StructureStatsScriptableObject : ScriptableObject
+
+
+public class StructureScriptableObject : ScriptableObject
 {
     private int level;
     [SerializeField] private const int ironRequirementLevel1 = 1;
@@ -53,5 +54,4 @@ public class StructureStatsScriptableObject : ScriptableObject
     {
         level++;
     }
-
 }
