@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private bool _rightCommand;
     //private bool _isWallSliding;
     private float _buttonPressedTime;
+    private Animator _animator;
 
     [SerializeField] private float _runSpeed = 1.0f;
     [SerializeField] private float _jumpHeight = 3.0f;
@@ -33,12 +34,13 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _animator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             _rb.gravityScale = _gravityScale;
             
@@ -54,9 +56,32 @@ public class PlayerController : MonoBehaviour
         {
             _rightCommand = true;
         }
+        WallSlided();
+        
+        //ANIMATIONS//
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        {
+            _animator.SetBool("isMoving", true);
+        }
+        else
+        {
+            _animator.SetBool("isMoving", false);
+        }
 
-        wallSlided();
-        _isGrounded = isGrounded();
+        if (!IsGrounded() && !IsFalling())
+        {
+            _animator.SetInteger("isJumping", 1);
+        }
+        else if (IsFalling())
+        {
+            _animator.SetInteger("isJumping", 2);
+        }
+        else
+        {
+            _animator.SetInteger("isJumping", 0);
+        }
+
+
     }
 
     private void FixedUpdate()
@@ -75,13 +100,13 @@ public class PlayerController : MonoBehaviour
                 _rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
             }
 
-            if (_rb.velocity.y < 0 || !_jumpCommand)
+            if (_rb.velocity.y < 0f || !_jumpCommand)
             {
                 _rb.gravityScale = _gravityFallingScale;
             }
         }
 
-        if (!isGrounded())
+        if (!IsGrounded())
         {
             if (_leftCommand)
             {
@@ -121,19 +146,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private bool isGrounded()
+    private bool IsGrounded()
     {
        return Physics2D.OverlapBox(_isGroundedPosition.position, _isGroundedSize,0,groundMask);
     }
 
-    private bool isWalled()
+    private bool IsFalling()
+    {
+        return _rb.velocity.y < -1f;
+    }
+
+    private bool IsWalled()
     {
         return Physics2D.OverlapBox(_isWallPosition.position, _isWallSize, 0, wallMask);
     }
 
-    private void wallSlided()
+    private void WallSlided()
     {
-        if(isWalled() && !isGrounded() && (_leftCommand || _rightCommand))
+        if(IsWalled() && !IsGrounded() && (_leftCommand || _rightCommand))
         {
             //_isWallSliding = true;
             _rb.velocity = new Vector2(_rb.velocity.x, Mathf.Clamp(_rb.velocity.y, -_wallSlidingSpeed, float.MaxValue));

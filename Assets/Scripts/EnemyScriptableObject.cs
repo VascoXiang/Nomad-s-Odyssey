@@ -35,6 +35,11 @@ public class EnemyScriptableObject : ScriptableObject
         return currentHealth;
     }
 
+    public void SetCurrentHealth(int currentHealth)
+    {
+       this.currentHealth = currentHealth;
+    }
+
     public int GetMaxHealth()
     {
         return maxHealth;

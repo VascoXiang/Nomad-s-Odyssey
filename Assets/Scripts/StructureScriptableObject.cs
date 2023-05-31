@@ -8,12 +8,12 @@ using UnityEngine;
 public class StructureScriptableObject : ScriptableObject
 {
     private int level;
-    [SerializeField] private const int ironRequirementLevel1 = 1;
-    [SerializeField] private const int ironRequirementLevel2 = 1;
-    [SerializeField] private const int ironRequirementLevel3 = 1;
-    [SerializeField] private const int woodRequirementLevel1 = 1;
-    [SerializeField] private const int woodRequirementLevel2 = 1;
-    [SerializeField] private const int woodRequirementLevel3 = 1;
+    [SerializeField] private int ironRequirementLevel1 = 1;
+    [SerializeField] private int ironRequirementLevel2 = 1;
+    [SerializeField] private int ironRequirementLevel3 = 1;
+    [SerializeField] private int woodRequirementLevel1 = 1;
+    [SerializeField] private int woodRequirementLevel2 = 1;
+    [SerializeField] private int woodRequirementLevel3 = 1;
 
 
     // Start is called before the first frame update
