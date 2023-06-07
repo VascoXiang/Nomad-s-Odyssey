@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float _wallSlidingSpeed = 3.0f;
     
-    [SerializeField] private LayerMask groundMask;
+    [SerializeField] private LayerMask _groundMask;
     [SerializeField] private Transform _isGroundedPosition;
     [SerializeField] private Vector2 _isGroundedSize;
     
@@ -148,7 +148,7 @@ public class PlayerController : MonoBehaviour
 
     private bool IsGrounded()
     {
-       return Physics2D.OverlapBox(_isGroundedPosition.position, _isGroundedSize,0,groundMask);
+       return Physics2D.OverlapBox(_isGroundedPosition.position, _isGroundedSize,0,_groundMask);
     }
 
     private bool IsFalling()

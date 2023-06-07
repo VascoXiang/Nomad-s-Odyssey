@@ -45,9 +45,9 @@ GameObject:
   - component: {fileID: 4712614158046021668}
   - component: {fileID: 4712614158046021667}
   - component: {fileID: 4712614158046021666}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,14 +87,14 @@ MonoBehaviour:
   _gravityFallingScale: 80
   _buttonSpacePressedWindow: 0.3
   _wallSlidingSpeed: 3
-  groundMask:
+  _groundMask:
     serializedVersion: 2
-    m_Bits: 200
+    m_Bits: 192
   _isGroundedPosition: {fileID: 4712614158270811873}
   _isGroundedSize: {x: 0.7, y: 0.1}
   wallMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
   _isWallPosition: {fileID: 4712614157616511169}
   _isWallSize: {x: 0.1, y: 1}
 --- !u!212 &4712614158046021669

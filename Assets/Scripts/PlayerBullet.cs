@@ -20,12 +20,10 @@ public class PlayerBullet : MonoBehaviour
         Debug.Log("Entrei");
         if (collision.gameObject.tag != "Player")
         {
-            Debug.Log("Entrei");
             Destroy(this.gameObject);
             if (collision.gameObject.tag == "Enemy")
             {
                 collision.gameObject.GetComponent<EnemyScript>().TakeDamage(_ebs.getDamage());
-
 
                 //Vector2 direction = (collision.gameObject.transform.position - this.gameObject.transform.position);
                 //collision.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * _ebs.Bullet_force, ForceMode2D.Impulse);

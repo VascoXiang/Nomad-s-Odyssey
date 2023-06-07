@@ -238,8 +238,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6772375259229581250, guid: 4f7e614041d7892499ee55cc913c3c66, type: 3}
+      propertyPath: _angle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6772375259229581250, guid: 4f7e614041d7892499ee55cc913c3c66, type: 3}
       propertyPath: _enemyHealth
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6772375259229581250, guid: 4f7e614041d7892499ee55cc913c3c66, type: 3}
+      propertyPath: _obstructionMask.m_Bits
+      value: 192
       objectReference: {fileID: 0}
     - target: {fileID: 6772375259229581251, guid: 4f7e614041d7892499ee55cc913c3c66, type: 3}
       propertyPath: m_RootOrder
@@ -763,6 +771,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6772375259229581250, guid: 4f7e614041d7892499ee55cc913c3c66, type: 3}
+      propertyPath: _angle
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6772375259229581250, guid: 4f7e614041d7892499ee55cc913c3c66, type: 3}
       propertyPath: _enemyHealth
       value: 5
       objectReference: {fileID: 0}
@@ -937,7 +949,7 @@ GameObject:
   - component: {fileID: 2098080436}
   - component: {fileID: 2098080435}
   - component: {fileID: 2098080434}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1072,14 +1084,14 @@ MonoBehaviour:
   _gravityFallingScale: 80
   _buttonSpacePressedWindow: 0.3
   _wallSlidingSpeed: 3
-  groundMask:
+  _groundMask:
     serializedVersion: 2
-    m_Bits: 200
+    m_Bits: 192
   _isGroundedPosition: {fileID: 200551537}
   _isGroundedSize: {x: 0.7, y: 0.1}
   wallMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
   _isWallPosition: {fileID: 1425283665}
   _isWallSize: {x: 0.1, y: 1}
 --- !u!4 &2098080439
@@ -1215,6 +1227,10 @@ PrefabInstance:
     - target: {fileID: 6115568807240896396, guid: 4f7e614041d7892499ee55cc913c3c66, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6772375259229581250, guid: 4f7e614041d7892499ee55cc913c3c66, type: 3}
+      propertyPath: _radius
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6772375259229581250, guid: 4f7e614041d7892499ee55cc913c3c66, type: 3}
       propertyPath: _enemyHealth

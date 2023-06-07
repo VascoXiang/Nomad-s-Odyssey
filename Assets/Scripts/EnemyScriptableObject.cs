@@ -6,44 +6,17 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Enemy ScriptableObject", menuName = "Enemy ScriptableObject")]
 public class EnemyScriptableObject : ScriptableObject
 {
-    [SerializeField] private int MAX_HEALTH = 3;
-    private int maxHealth = 3;
-    private int currentHealth = 3;
-    [SerializeField] private GameObject projectile;
+    [SerializeField] private float maxHealth = 3;
+    [SerializeField] private float enemyAttack = 3;
 
-    // Start is called before the first frame update
-    public void EarlyGameStart()
+
+    public float MaxHealth
     {
-        maxHealth = MAX_HEALTH;
-        currentHealth = MAX_HEALTH;
+        get => maxHealth;
     }
 
-
-    public void DefaultLevelStart()
+    public float EnemyAttack
     {
-        maxHealth = MAX_HEALTH;
-        currentHealth = MAX_HEALTH;
+        get => enemyAttack;
     }
-
-    public void GetHit(int damage)
-    {
-        currentHealth -= damage;
-    }
-
-    public int GetCurrentHealth()
-    {
-        return currentHealth;
-    }
-
-    public void SetCurrentHealth(int currentHealth)
-    {
-       this.currentHealth = currentHealth;
-    }
-
-    public int GetMaxHealth()
-    {
-        return maxHealth;
-    }
-
-
 }
