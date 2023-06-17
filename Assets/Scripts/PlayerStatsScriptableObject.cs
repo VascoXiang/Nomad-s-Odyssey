@@ -9,8 +9,8 @@ public class PlayerStatsScriptableObject : ScriptableObject
     [SerializeField] private int MAX_HEALTH = 3;
     private int maxHealth = 3;
     private int currentHealth = 3;
-    private int wood;
-    private int iron;
+    private int wood = 0;
+    private int iron = 0;
     private Boolean bonusArmor, bonusDamage, bonusSpeed;
     [SerializeField] private GameObject projectile;
 

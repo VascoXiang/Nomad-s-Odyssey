@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                float jumpforce = Mathf.Sqrt(_jumpHeight * (Physics2D.gravity.y * _rb.gravityScale) * -2) * _rb.mass;
+                float jumpforce = Mathf.Sqrt(_jumpHeight * (Physics2D.gravity.y * _rb.gravityScale) * -2) * _rb.mass / 1.01f;
                 _rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
             }
 
@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
         {
             if (_leftCommand)
             {
-                _rb.AddForce(Vector2.left * 10, ForceMode2D.Impulse);
+                _rb.AddForce(Vector2.left * _runSpeed/1.5f, ForceMode2D.Impulse);
                 _leftCommand = false;
                 Quaternion rotation = transform.localRotation;
                 rotation.y = 180;
@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (_rightCommand)
             {
-                _rb.AddForce(Vector2.right * 10, ForceMode2D.Impulse);
+                _rb.AddForce(Vector2.right * _runSpeed/1.5f, ForceMode2D.Impulse);
                 _rightCommand = false;
                 Quaternion rotation = transform.localRotation;
                 rotation.y = 0;
