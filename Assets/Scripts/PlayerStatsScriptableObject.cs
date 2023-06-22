@@ -62,6 +62,10 @@ public class PlayerStatsScriptableObject : ScriptableObject
         this.iron += iron;
     }
 
+    public void RemoveIron(int iron)
+    {
+        this.iron -= iron;
+    }
 
     public int GetIronResources()
     {
@@ -71,6 +75,11 @@ public class PlayerStatsScriptableObject : ScriptableObject
     public void AddWoodResources(int wood)
     {
         this.wood += wood;
+    }
+
+    public void RemoveWoodResources(int wood)
+    {
+        this.wood -= wood;
     }
 
     public int GetWoodResources()
