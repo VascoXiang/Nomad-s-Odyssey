@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     [SerializeField] private ProjectileScriptableObject _ebs;
     private void Awake()
@@ -18,12 +18,12 @@ public class PlayerBullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Entrei");
-        if (collision.gameObject.tag != "Player")
+        if (collision.gameObject.tag != "Enemy")
         {
             Destroy(this.gameObject);
-            if (collision.gameObject.tag == "Enemy")
+            if (collision.gameObject.tag == "Player")
             {
-                collision.gameObject.GetComponent<EnemyScript>().TakeDamage(_ebs.getDamage());
+                collision.gameObject.GetComponent<PlayerCombat>().TakeDamage(_ebs.getDamage());
 
                 //Vector2 direction = (collision.gameObject.transform.position - this.gameObject.transform.position);
                 //collision.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * _ebs.Bullet_force, ForceMode2D.Impulse);

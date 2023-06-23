@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: KodaProjectile
   m_EditorClassIdentifier: 
   damage: 1
-  bulletSpeed: 4
+  bulletSpeed: 25

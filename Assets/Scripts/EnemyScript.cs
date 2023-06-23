@@ -8,13 +8,24 @@ using System;
 public class EnemyScript : MonoBehaviour
 {
     #region ATRIBUTES
-    
+
+    private Rigidbody2D _rb;
+    private Animator _animator;
+    [SerializeField] private float _speed;
+    [SerializeField] private Transform[] _checkpoints;
+    private int _nextCheckpoint = 0;
+
+
     #region ENEMY HEALTH
     [SerializeField] private EnemyScriptableObject _enemy;
     private float _enemyMaxHealth;
     private float _enemyCurrentHealth;
     [SerializeField] private Slider enemy_health_ui;
     #endregion
+
+    [SerializeField] private GameObject _projectile;
+    [SerializeField] private Transform _startPosition;
+    private bool isAttacking = false;
 
     #region ENEMY FIELDVIEW
     [SerializeField] private float _radius;
@@ -25,10 +36,10 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] private LayerMask _targetMask;
     [SerializeField] private LayerMask _obstructionMask;
 
-    [SerializeField] private bool _canSeePlayer;
+    private bool _canSeePlayer;
     #endregion
 
-
+    
     //[SerializeField]private TMP_Text enemy_name_ui;
     //[SerializeField] private string enemy_name = "Enemy";
 
@@ -41,11 +52,63 @@ public class EnemyScript : MonoBehaviour
         enemy_health_ui.maxValue = _enemyMaxHealth;
         enemy_health_ui.value = _enemyCurrentHealth;
 
+        _rb = gameObject.GetComponent<Rigidbody2D>();
+        _animator = gameObject.GetComponent<Animator>();
         _player = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(FOVRoutine());
 
         //enemy_name_ui.text = enemy_name;
     }
+
+    private void Update()
+    {
+        if (_canSeePlayer)
+        {
+            _rb.velocity = Vector2.zero;
+            _animator.SetBool("isMoving", false);
+            if (!isAttacking)
+            {
+                _animator.SetTrigger("isAttacking");
+                isAttacking = true;
+                StartCoroutine(Attack());
+            }
+        }
+        else
+        {
+            movement();
+            _animator.SetBool("isMoving", true);
+            if(_nextCheckpoint == 0)
+            {
+                if(Vector2.Distance(transform.position, _checkpoints[0].position) < .2f)
+                {
+                    gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+                    _nextCheckpoint = 1;
+                }
+            }
+            if (_nextCheckpoint == 1)
+            {
+                if (Vector2.Distance(transform.position, _checkpoints[1].position) < .2f)
+                {
+                    gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+                    _nextCheckpoint = 0;
+                }
+            }
+        }
+    }
+
+    private void movement()
+    {
+        if(gameObject.transform.rotation.eulerAngles.y == 180)
+        {
+            _rb.velocity = new Vector2(-_speed, 0);
+        }
+        else if (gameObject.transform.rotation.eulerAngles.y == 0)
+        {
+            _rb.velocity = new Vector2(_speed, 0);
+        }
+    }
+
+
     public void TakeDamage(int damage)
     {
         _enemyCurrentHealth -= damage;
@@ -56,6 +119,16 @@ public class EnemyScript : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    private IEnumerator Attack()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Instantiate(_projectile, _startPosition.position, transform.rotation);
+
+        yield return new WaitForSeconds(3f);
+        isAttacking = false;
+    }
+
 
     private IEnumerator FOVRoutine()
     {

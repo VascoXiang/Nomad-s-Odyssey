@@ -11,32 +11,47 @@ public class PlayerCombat : MonoBehaviour
     private float _attackCooldown = 0.5f;
     private float _currentAttackCooldown = 0;
     private Animator _animator;
+    private PlayerController _playerController;
+    private bool _isAttacking = false;
 
     private void Start()
     {
         _ps.DefaultLevelStart();
+        _playerController = gameObject.GetComponent<PlayerController>();
         _animator = gameObject.GetComponent<Animator>();
     }
     void Update()
     {
-        // Ctrl was pressed, launch a projectile
         if (Input.GetButtonDown("Fire1") && _currentAttackCooldown <= 0)
         {
             _currentAttackCooldown = _attackCooldown;
             _animator.SetTrigger("isAttacking");
+            _isAttacking = true;
             StartCoroutine(instantiateArrow());
         }
-        
+
+        if (_isAttacking)
+        {
+            _playerController.enabled = false;
+        }
+
         if(_currentAttackCooldown > 0)
         {
             _currentAttackCooldown -= Time.deltaTime;
         }
     }
 
+    public void TakeDamage(int damage)
+    {
+        _ps.GetHit(damage);
+    }
+
     IEnumerator instantiateArrow()
     {
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.3f);
         Instantiate(projectile, startPosition.position, transform.rotation);
+        _isAttacking = false;
+        _playerController.enabled = true;
     }
 
 }

@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d60c35cdc859e44428feac3f937085b0, type: 3}
   m_Name: EnemyProjectile
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 6
+  bulletSpeed: 12

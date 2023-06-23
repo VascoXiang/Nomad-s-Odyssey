@@ -12,7 +12,6 @@ public class PlayerStatsScriptableObject : ScriptableObject
     private int wood = 0;
     private int iron = 0;
     private Boolean bonusArmor, bonusDamage, bonusSpeed;
-    [SerializeField] private GameObject projectile;
 
     // Start is called before the first frame update
     public void EarlyGameStart()
