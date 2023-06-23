@@ -14,6 +14,7 @@ public class VillageStatsScriptableObject : ScriptableObject
     private StructureScriptableObject sawmill;
     private StructureScriptableObject wall;
 
+
     // Start is called before the first frame update
     public void EarlyGameStart()
     {
@@ -21,13 +22,13 @@ public class VillageStatsScriptableObject : ScriptableObject
         wood = 0;
     }
 
-    public void IncrementStructureLevel(String structure)
+    public void IncrementStructureLevel(String structure, int nextLevel)
     {
         int[] requirements = new int[2];
         switch (structure)
         {
             case "ironMine":
-                requirements = ironMine.getRequirementsLevel(ironMine.GetLevel() + 1);
+                requirements = ironMine.getRequirementsLevel(nextLevel);
                 if (this.iron >= requirements[0] || this.wood >= requirements[1])
                 {
                     this.iron -= requirements[0];
@@ -36,7 +37,7 @@ public class VillageStatsScriptableObject : ScriptableObject
                 }
                 break;
             case "market":
-                requirements = market.getRequirementsLevel(market.GetLevel() + 1);
+                requirements = market.getRequirementsLevel(nextLevel);
                 if (this.iron >= requirements[0] || this.wood >= requirements[1])
                 {
                     this.iron -= requirements[0];
@@ -45,7 +46,7 @@ public class VillageStatsScriptableObject : ScriptableObject
                 }
                 break;
             case "mainBuilding":
-                requirements = mainBuilding.getRequirementsLevel(mainBuilding.GetLevel() + 1);
+                requirements = mainBuilding.getRequirementsLevel(nextLevel);
                 if (this.iron >= requirements[0] || this.wood >= requirements[1])
                 {
                     this.iron -= requirements[0];
@@ -54,7 +55,7 @@ public class VillageStatsScriptableObject : ScriptableObject
                 }
                 break;
             case "sawmill":
-                requirements = sawmill.getRequirementsLevel(sawmill.GetLevel() + 1);
+                requirements = sawmill.getRequirementsLevel(nextLevel);
                 if (this.iron >= requirements[0] || this.wood >= requirements[1])
                 {
                     this.iron -= requirements[0];
@@ -63,7 +64,7 @@ public class VillageStatsScriptableObject : ScriptableObject
                 }
                 break;
             case "wall":
-                requirements = wall.getRequirementsLevel(wall.GetLevel() + 1);
+                requirements = wall.getRequirementsLevel(nextLevel);
                 if (this.iron >= requirements[0] || this.wood >= requirements[1])
                 {
                     this.iron -= requirements[0];
@@ -93,4 +94,15 @@ public class VillageStatsScriptableObject : ScriptableObject
     {
         return wood;
     }
+
+    public StructureScriptableObject getMineScriptableObject() { return ironMine; }
+
+    public StructureScriptableObject getWallScriptableObject() { return wall; }
+
+    public StructureScriptableObject getMarketScriptableObject() { return market; }
+
+    public StructureScriptableObject getMainBuildingScriptableObject() { return mainBuilding; }
+
+    public StructureScriptableObject getSawmillScriptableObject() { return sawmill; }
+
 }
