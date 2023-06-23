@@ -8,18 +8,19 @@ using UnityEngine;
 public class StructureScriptableObject : ScriptableObject
 {
     private int level;
+    private int buff;
     [SerializeField] private int ironRequirementLevel1 = 1;
     [SerializeField] private int ironRequirementLevel2 = 1;
     [SerializeField] private int ironRequirementLevel3 = 1;
     [SerializeField] private int woodRequirementLevel1 = 1;
     [SerializeField] private int woodRequirementLevel2 = 1;
     [SerializeField] private int woodRequirementLevel3 = 1;
-
-
+   
     // Start is called before the first frame update
     public void EarlyGameStart()
     {
         level = 0;
+        buff = 1;
     }
 
     public int GetLevel()
@@ -27,7 +28,9 @@ public class StructureScriptableObject : ScriptableObject
         return level;
     }
 
-    public int[] getRequirementsLevel(int level)
+    public int GetBuff() { return buff; }
+
+    public int[] GetRequirementsLevel(int level)
     {
 
         int[] requirements = new int[2];
@@ -45,13 +48,34 @@ public class StructureScriptableObject : ScriptableObject
                 requirements[0] = ironRequirementLevel3;
                 requirements[1] = woodRequirementLevel3;
                 break;
+            default:
+                requirements[0] = int.MaxValue;
+                requirements[1] = int.MaxValue;
+                break;
         }
 
         return requirements;
     }
 
-    public void incrementLevel()
+    public void IncrementLevel()
     {
         level++;
+        if (level == 1)
+        {
+            setBuff(2);
+        }
+        if (level == 2)
+        {
+            setBuff(3);
+        }
+        if (level == 3)
+        {
+            setBuff(4);
+        }
+    }
+
+    private void setBuff(int buff)
+    {
+        this.buff = buff;
     }
 }

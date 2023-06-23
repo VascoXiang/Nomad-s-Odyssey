@@ -12,3 +12,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b9ff4f3af8877748a43fc1989a2d832, type: 3}
   m_Name: ClanVillage
   m_EditorClassIdentifier: 
+  wood: 1
+  iron: 1
+  ironMine: {fileID: 11400000, guid: 18e8cec464d3d3a4e813026b4d419bd7, type: 2}
+  market: {fileID: 11400000, guid: e6916b99841a7264a863d9a835198a97, type: 2}
+  mainBuilding: {fileID: 11400000, guid: 3f4a11768c3965a4aaf1a5be9375db0e, type: 2}
+  sawmill: {fileID: 11400000, guid: b017f01f5d53a7f449bc2ca5ca5e519e, type: 2}
+  wall: {fileID: 11400000, guid: d7f6ae9e78cb059459f988075f182053, type: 2}
+  principal1: {fileID: 0}
+  principal2: {fileID: 0}
+  principal3: {fileID: 0}
+  sawmill1: {fileID: 0}
+  sawmill2: {fileID: 0}
+  market1: {fileID: 0}
+  market2: {fileID: 0}
+  market3: {fileID: 0}
+  mine1: {fileID: 0}
+  mine2: {fileID: 0}
+  mine3: {fileID: 0}
+  startingWall1: {fileID: 0}
+  startingWall2: {fileID: 0}
+  startingWall3: {fileID: 0}
+  startingWall4: {fileID: 0}
+  startingWall5: {fileID: 0}
+  startingWall6: {fileID: 0}
+  startingWall7: {fileID: 0}
+  startingWall8: {fileID: 0}
+  startingWall9: {fileID: 0}
+  startingWall10: {fileID: 0}
+  startingWall11: {fileID: 0}
+  startingWall12: {fileID: 0}
+  wall2: {fileID: 0}

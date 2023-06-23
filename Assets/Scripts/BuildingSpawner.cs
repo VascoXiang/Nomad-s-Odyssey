@@ -38,7 +38,7 @@ public class BuildingSpawner : MonoBehaviour
         Instantiate(principal1, principal1.transform.position, principal1.transform.rotation);
         villageStatsScriptableObject.EarlyGameStart();
         villageStatsScriptableObject.getMainBuildingScriptableObject().EarlyGameStart();
-        villageStatsScriptableObject.getMainBuildingScriptableObject().incrementLevel();
+        villageStatsScriptableObject.getMainBuildingScriptableObject().IncrementLevel();
     }
 
     void PrincipalLevel2()

@@ -2136,7 +2136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &374906443
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2223,7 +2223,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &391102195
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2574,7 +2574,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Main Building lvl:'
+  m_text: 'Wall lvl:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4659,6 +4659,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 924381448}
+  - component: {fileID: 924381449}
   m_Layer: 0
   m_Name: 3DUI
   m_TagString: Untagged
@@ -4687,6 +4688,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &924381449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924381447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d69741218112c64381301b4c37fbd47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  villageStats: {fileID: 11400000, guid: 39156eabb691dfb439b9647664f3924d, type: 2}
+  mainBuildingWindow: {fileID: 1435097348}
+  sawmillWindow: {fileID: 374906442}
+  mineWindow: {fileID: 391102194}
+  marketWindow: {fileID: 1706406484}
+  wallWindow: {fileID: 1521381557}
+  mainLevel: {fileID: 2130772191}
+  mainBuff: {fileID: 830242812}
+  mainIronNeeded: {fileID: 1155619396}
+  mainWoodNeeded: {fileID: 1871091516}
+  sawmillLevel: {fileID: 1330080247}
+  sawmillBuff: {fileID: 651424067}
+  sawmillIronNeeded: {fileID: 1630603681}
+  sawmillWoodNeeded: {fileID: 734697155}
+  mineLevel: {fileID: 864414811}
+  mineBuff: {fileID: 1614800210}
+  mineIronNeeded: {fileID: 67824756}
+  mineWoodNeeded: {fileID: 1256218312}
+  marketLevel: {fileID: 710282715}
+  marketBuff: {fileID: 328290852}
+  marketIronNeeded: {fileID: 48718652}
+  marketWoodNeeded: {fileID: 1812004759}
+  wallLevel: {fileID: 718451162}
+  wallBuff: {fileID: 2014024212}
+  wallIronNeeded: {fileID: 1958008830}
+  wallWoodNeeded: {fileID: 1769394444}
+  mainBuildingLevelUp: {fileID: 426468227}
+  sawmillLevelUp: {fileID: 53319309}
+  mineLevelUp: {fileID: 263021694}
+  marketLevelUp: {fileID: 1668317884}
+  wallLevelUp: {fileID: 962654389}
 --- !u!1 &947563072
 GameObject:
   m_ObjectHideFlags: 0
@@ -5103,7 +5147,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1000444885}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 924381449}
+        m_TargetAssemblyTypeName: VillageMenus, Assembly-CSharp
+        m_MethodName: CloseMarketWindow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1000444885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5708,7 +5764,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1243906479}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 924381449}
+        m_TargetAssemblyTypeName: VillageMenus, Assembly-CSharp
+        m_MethodName: OpenMarketWindow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1243906479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6215,7 +6283,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1271088098}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 924381449}
+        m_TargetAssemblyTypeName: VillageMenus, Assembly-CSharp
+        m_MethodName: CloseWallWindow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1271088098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6516,7 +6596,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1322820764}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 924381449}
+        m_TargetAssemblyTypeName: VillageMenus, Assembly-CSharp
+        m_MethodName: CloseMainBuildingWindow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1322820764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6773,7 +6865,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1340246253}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 924381449}
+        m_TargetAssemblyTypeName: VillageMenus, Assembly-CSharp
+        m_MethodName: CloseSawmillWindow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1340246253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6971,7 +7075,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1414229827}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 924381449}
+        m_TargetAssemblyTypeName: VillageMenus, Assembly-CSharp
+        m_MethodName: OpenMineWindow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1414229827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7068,7 +7184,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Main Building lvl:'
+  m_text: 'Mine lvl:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7162,7 +7278,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1435097349
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7317,7 +7433,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1521381558
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7681,7 +7797,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1544090634}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 924381449}
+        m_TargetAssemblyTypeName: VillageMenus, Assembly-CSharp
+        m_MethodName: CloseMineWindow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1544090634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7938,7 +8066,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1592941163}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 924381449}
+        m_TargetAssemblyTypeName: VillageMenus, Assembly-CSharp
+        m_MethodName: OpenSawmillWindow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1592941163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8503,7 +8643,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Main Building lvl:'
+  m_text: 'Market lvl:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8962,7 +9102,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1706406485
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10426,7 +10566,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1971904336}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 924381449}
+        m_TargetAssemblyTypeName: VillageMenus, Assembly-CSharp
+        m_MethodName: OpenWallWindow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1971904336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10658,7 +10810,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Main Building lvl:'
+  m_text: 'Sawmill lvl:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11223,7 +11375,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2127953622}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 924381449}
+        m_TargetAssemblyTypeName: VillageMenus, Assembly-CSharp
+        m_MethodName: OpenMainBuildingWindow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2127953622
 MonoBehaviour:
   m_ObjectHideFlags: 0
