@@ -11,8 +11,6 @@ public class DeadZone : MonoBehaviour
         if(collision.tag == "Player")
         {
             _ps.GetHit(int.MaxValue);
-            _ps.RemoveIron(_ps.GetIronResources());
-            _ps.RemoveWoodResources(_ps.GetWoodResources());
         }
     }
 }

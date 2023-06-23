@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acba160de3f2299489cc479fb1be06ae, type: 3}
   m_Name: KodaOlympus
   m_EditorClassIdentifier: 
-  MAX_HEALTH: 25
+  MAX_HEALTH: 50

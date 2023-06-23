@@ -18,7 +18,7 @@ public class PlayerBullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Entrei");
-        if (collision.gameObject.tag != "Player")
+        if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "Collectable")
         {
             Destroy(this.gameObject);
             if (collision.gameObject.tag == "Enemy")

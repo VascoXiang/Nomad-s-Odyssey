@@ -54,6 +54,12 @@ public class PlayerStatsScriptableObject : ScriptableObject
         if (bonusArmor) currentHealth -= damage / 2;
 
         else currentHealth -= damage;
+
+        if(currentHealth <= 0)
+        {
+            wood = 0;
+            iron = 0;
+        }
     }
 
     public void AddIron(int iron)

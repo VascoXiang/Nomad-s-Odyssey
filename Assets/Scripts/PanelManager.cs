@@ -11,7 +11,8 @@ public class PanelManager : MonoBehaviour
 
     [SerializeField] private GameObject winOrLoseUI;
     [SerializeField] private GameObject pauseUI;
-    //[SerializeField] private TMP_Text text_message_points;
+    [SerializeField] private TMP_Text text_wood_points;
+    [SerializeField] private TMP_Text text_iron_points;
     [SerializeField] private PlayerStatsScriptableObject _ps;
     [SerializeField] private GameObject _player;
 
@@ -49,9 +50,9 @@ public class PanelManager : MonoBehaviour
         Time.timeScale = 0;
     }
 
-    public void retry()
+    public void villageScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(1);
         Time.timeScale = 1;
     }
 
@@ -67,6 +68,8 @@ public class PanelManager : MonoBehaviour
         {
             gameEnded = true;
             winOrLoseUI.SetActive(true);
+            text_wood_points.text = "wood: " + _ps.GetWoodResources();
+            text_iron_points.text = "iron: " + _ps.GetIronResources();
             _player.GetComponent<PlayerController>().enabled = false;
             _player.GetComponent<PlayerCombat>().enabled = false;
             Time.timeScale = 0;
