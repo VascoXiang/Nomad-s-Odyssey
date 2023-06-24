@@ -3,7 +3,36 @@ guid: 5b9ff4f3af8877748a43fc1989a2d832
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - ironMine: {instanceID: 0}
+  - market: {instanceID: 0}
+  - mainBuilding: {instanceID: 0}
+  - sawmill: {instanceID: 0}
+  - wall: {instanceID: 0}
+  - principal1: {fileID: 4951366381452874709, guid: d1968860422355a4aa2eea7b4423c24d, type: 3}
+  - principal2: {fileID: 5622674194632076538, guid: c2f2d41b7f03fe64791431e5e2ad05aa, type: 3}
+  - principal3: {fileID: 4456768364313627962, guid: fce25095b0b7ec746baf3b4246164259, type: 3}
+  - sawmill1: {fileID: 8518273337917090069, guid: 716e2939a928c9e409fb689887fc602c, type: 3}
+  - sawmill2: {fileID: 3239344014211396989, guid: d4612f42eb4477345a893d947cdad7e4, type: 3}
+  - market1: {fileID: 7297842393721767539, guid: cbc598cf127b05147bed9f68f365e2b3, type: 3}
+  - market2: {fileID: 9062520781192564074, guid: 384e8a833b6478f499b80d73669d5163, type: 3}
+  - market3: {fileID: 1725189681044018160, guid: 996d13af25ed2bd4b8ecc61d496e0818, type: 3}
+  - mine1: {fileID: 239093995436883613, guid: 48e5fd8451e631b4e831302aafa869ca, type: 3}
+  - mine2: {fileID: 6371353201480218698, guid: 96532d9d56a57ec4f88c997634db8a35, type: 3}
+  - mine3: {fileID: 4786847724958681905, guid: fb5577a3030069b42a20e9784ee20511, type: 3}
+  - startingWall1: {fileID: 5200773181518515533, guid: 2363d53c649598844a1415edae29747a, type: 3}
+  - startingWall2: {fileID: 6055068717641423463, guid: a3c05d2d262a2f8468ae43974915d648, type: 3}
+  - startingWall3: {fileID: 2899493508644851998, guid: d8c29f276ce5a9e4dbe1d0a1b0684c23, type: 3}
+  - startingWall4: {fileID: 3559041939931229798, guid: 289be63a0ed4b6b4787f21cae62b1b11, type: 3}
+  - startingWall5: {fileID: 3104810538163694629, guid: 9567961566924df4c95552ac41282d61, type: 3}
+  - startingWall6: {fileID: 6285189679190121277, guid: d5d04cab8baf5804ab24beb8af3fa2a1, type: 3}
+  - startingWall7: {fileID: 5222505072590635396, guid: fd11d9ea54ed0dc4e8dc77bffa57d494, type: 3}
+  - startingWall8: {fileID: 2476310324861164262, guid: 83c6069bcc3248444b79f409e70bc6da, type: 3}
+  - startingWall9: {fileID: 7532677641210166775, guid: ecad3755abaeac24d81bc3499c84490b, type: 3}
+  - startingWall10: {fileID: 3023910152657597768, guid: 827592bfd3045a646b790c3138239cd1, type: 3}
+  - startingWall11: {fileID: 587172811509936425, guid: 9d257ccacda9b0f46ac3ee36efcfd0bc, type: 3}
+  - startingWall12: {fileID: 16030684956287817, guid: 33f867ab3d8e16644a2637b187d2ca9a, type: 3}
+  - wall2: {fileID: 7518710342856626586, guid: dc04cb10b792bf84794fbe5be02f7e30, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

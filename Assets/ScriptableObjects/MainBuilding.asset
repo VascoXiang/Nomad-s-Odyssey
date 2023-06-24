@@ -12,3 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41014f8c231db604f9ce6b16d1c524bd, type: 3}
   m_Name: MainBuilding
   m_EditorClassIdentifier: 
+  level: 3
+  buff: 4
+  ironRequirementLevel1: 1
+  ironRequirementLevel2: 1
+  ironRequirementLevel3: 1
+  woodRequirementLevel1: 1
+  woodRequirementLevel2: 1
+  woodRequirementLevel3: 1

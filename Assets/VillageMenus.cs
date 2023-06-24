@@ -209,4 +209,39 @@ public class VillageMenus : MonoBehaviour
     {
         mineWindow.SetActive(false);
     }
+
+    public void LevelUpMainBuilding()
+    {
+        int levelMain = villageStats.getMainBuildingScriptableObject().GetLevel();
+        villageStats.IncrementStructureLevel("mainBuilding",levelMain+1);
+        CloseMainBuildingWindow();
+    }
+
+    public void LevelUpMarket()
+    {
+        int levelMarket = villageStats.getMarketScriptableObject().GetLevel();
+        villageStats.IncrementStructureLevel("market", levelMarket+1);
+        CloseMarketWindow();
+    }
+
+    public void LevelUpMine()
+    {
+        int levelMine = villageStats.getMineScriptableObject().GetLevel(); 
+        villageStats.IncrementStructureLevel("ironMine", levelMine+1);
+        CloseMineWindow();
+    }
+
+    public void LevelUpSawmill()
+    {
+        int levelSawmill = villageStats.getSawmillScriptableObject().GetLevel() ;
+        villageStats.IncrementStructureLevel("sawmill", levelSawmill+1);
+        CloseSawmillWindow();
+    }
+
+    public void LevelUpWall()
+    {
+        int levelWall = villageStats.getWallScriptableObject().GetLevel() ;
+        villageStats.IncrementStructureLevel("wall", levelWall+1);
+        CloseWallWindow();
+    }
 }

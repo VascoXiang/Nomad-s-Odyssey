@@ -46,6 +46,7 @@ public class VillageStatsScriptableObject : ScriptableObject
     {
         iron = 0;
         wood = 0;
+        DefaultStart();
     }
 
     public void IncrementStructureLevel(String structure, int nextLevel)
@@ -55,47 +56,59 @@ public class VillageStatsScriptableObject : ScriptableObject
         {
             case "ironMine":
                 requirements = ironMine.GetRequirementsLevel(nextLevel);
-                if (this.iron >= requirements[0] || this.wood >= requirements[1])
+                if (this.iron >= requirements[0] && this.wood >= requirements[1])
                 {
                     this.iron -= requirements[0];
                     this.wood -= requirements[1];
                     ironMine.IncrementLevel();
+                    if (nextLevel == 1) MineLevel1();
+                    else if(nextLevel == 2) MineLevel2();
+                    else if (nextLevel == 3) MineLevel3();
                 }
                 break;
             case "market":
                 requirements = market.GetRequirementsLevel(nextLevel);
-                if (this.iron >= requirements[0] || this.wood >= requirements[1])
+                if (this.iron >= requirements[0] && this.wood >= requirements[1])
                 {
                     this.iron -= requirements[0];
                     this.wood -= requirements[1];
                     market.IncrementLevel();
+                    if(nextLevel == 1) MarketLevel1();
+                    else if( nextLevel == 2) MarketLevel2();
+                    else if (nextLevel == 3) MarketLevel3();
                 }
                 break;
             case "mainBuilding":
                 requirements = mainBuilding.GetRequirementsLevel(nextLevel);
-                if (this.iron >= requirements[0] || this.wood >= requirements[1])
+                if (this.iron >= requirements[0] && this.wood >= requirements[1])
                 {
                     this.iron -= requirements[0];
                     this.wood -= requirements[1];
                     mainBuilding.IncrementLevel();
+                    if (nextLevel == 2) PrincipalLevel2();
+                    else if (nextLevel == 3) PrincipalLevel3();
                 }
                 break;
             case "sawmill":
                 requirements = sawmill.GetRequirementsLevel(nextLevel);
-                if (this.iron >= requirements[0] || this.wood >= requirements[1])
+                if (this.iron >= requirements[0] && this.wood >= requirements[1])
                 {
                     this.iron -= requirements[0];
                     this.wood -= requirements[1];
                     sawmill.IncrementLevel();
+                    if(nextLevel == 1) SawmillLevel1();
+                    else if (nextLevel == 2) SawmillLevel2();
                 }
                 break;
             case "wall":
                 requirements = wall.GetRequirementsLevel(nextLevel);
-                if (this.iron >= requirements[0] || this.wood >= requirements[1])
+                if (this.iron >= requirements[0] && this.wood >= requirements[1])
                 {
                     this.iron -= requirements[0];
                     this.wood -= requirements[1];
                     wall.IncrementLevel();
+                    if (nextLevel == 1) WallLevel1();
+                    else if (nextLevel == 2) WallLevel2();
                 }
                 break;
         }
@@ -132,7 +145,7 @@ public class VillageStatsScriptableObject : ScriptableObject
     public StructureScriptableObject getSawmillScriptableObject() { return sawmill; }
 
 
-    void DefaultStart()
+    private void DefaultStart()
     {
         Instantiate(principal1, principal1.transform.position, principal1.transform.rotation);
         EarlyGameStart();
@@ -142,67 +155,56 @@ public class VillageStatsScriptableObject : ScriptableObject
 
     void PrincipalLevel2()
     {
-        IncrementStructureLevel("mainBuilding", 2);
         Instantiate(principal2, principal2.transform.position, principal2.transform.rotation);
     }
 
     void PrincipalLevel3()
     {
-        IncrementStructureLevel("mainBuilding", 3);
         Instantiate(principal3, principal3.transform.position, principal3.transform.rotation);
     }
 
     void SawmillLevel1()
     {
-        IncrementStructureLevel("sawmill", 1);
         Instantiate(sawmill1, sawmill1.transform.position, sawmill1.transform.rotation);
     }
 
     void SawmillLevel2()
     {
-        IncrementStructureLevel("sawmill", 2);
         Instantiate(sawmill2, sawmill2.transform.position, sawmill2.transform.rotation);
     }
 
     void MarketLevel1()
     {
-        IncrementStructureLevel("market", 1);
         Instantiate(market1, market1.transform.position, market1.transform.rotation);
     }
 
     void MarketLevel2()
     {
-        IncrementStructureLevel("market", 2);
         Instantiate(market2, market2.transform.position, market2.transform.rotation);
     }
 
     void MarketLevel3()
     {
-        IncrementStructureLevel("market", 3);
         Instantiate(market3, market3.transform.position, market3.transform.rotation);
     }
 
     void MineLevel1()
     {
-        IncrementStructureLevel("ironMine", 1);
         Instantiate(mine1, mine1.transform.position, mine1.transform.rotation);
     }
 
     void MineLevel2()
     {
-        IncrementStructureLevel("ironMine", 2);
         Instantiate(mine2, mine2.transform.position, mine2.transform.rotation);
     }
 
     void MineLevel3()
     {
-        IncrementStructureLevel("ironMine", 3);
         Instantiate(mine3, mine3.transform.position, mine3.transform.rotation);
     }
 
     void WallLevel1()
     {
-        IncrementStructureLevel("wall", 1);
         Instantiate(startingWall1, startingWall1.transform.position, startingWall1.transform.rotation);
         Instantiate(startingWall2, startingWall2.transform.position, startingWall2.transform.rotation);
         Instantiate(startingWall3, startingWall3.transform.position, startingWall3.transform.rotation);
@@ -219,13 +221,6 @@ public class VillageStatsScriptableObject : ScriptableObject
 
     void WallLevel2()
     {
-        IncrementStructureLevel("wall", 2);
         Instantiate(wall2, wall2.transform.position, wall2.transform.rotation);
     }
-
-    void WallLevel3()
-    {
-        IncrementStructureLevel("wall", 3);
-    }
-
 }

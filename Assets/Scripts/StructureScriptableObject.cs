@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class StructureScriptableObject : ScriptableObject
 {
-    private int level;
-    private int buff;
+    [SerializeField] private int level;
+    [SerializeField] private int buff;
     [SerializeField] private int ironRequirementLevel1 = 1;
     [SerializeField] private int ironRequirementLevel2 = 1;
     [SerializeField] private int ironRequirementLevel3 = 1;
@@ -49,8 +49,8 @@ public class StructureScriptableObject : ScriptableObject
                 requirements[1] = woodRequirementLevel3;
                 break;
             default:
-                requirements[0] = int.MaxValue;
-                requirements[1] = int.MaxValue;
+                requirements[0] = 99999;
+                requirements[1] = 99999;
                 break;
         }
 
