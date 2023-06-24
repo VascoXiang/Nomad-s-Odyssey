@@ -16,8 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _runSpeed = 1.0f;
     [SerializeField] private float _jumpHeight = 3.0f;
 
-    [SerializeField] private float _gravityScale = 10.0f;
-    [SerializeField] private float _gravityFallingScale = 50.0f;
+    [SerializeField] private float _gravityMultiplier = 10.0f;
     [SerializeField] private float _buttonSpacePressedWindow = 2.0f;
 
     [SerializeField] private float _wallSlidingSpeed = 3.0f;
@@ -42,7 +41,6 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
-            _rb.gravityScale = _gravityScale;
             
             _jumpCommand = true;
             _buttonPressedTime = 0;
@@ -97,36 +95,15 @@ public class PlayerController : MonoBehaviour
             else
             {
                 float jumpforce = Mathf.Sqrt(_jumpHeight * (Physics2D.gravity.y * _rb.gravityScale) * -2) * _rb.mass / 1.01f;
-                _rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
+                _rb.velocity = new Vector2(_rb.velocity.x, jumpforce);
             }
 
             if (_rb.velocity.y < 0f || !_jumpCommand)
             {
-                _rb.gravityScale = _gravityFallingScale;
+                _rb.velocity -= new Vector2(0,-Physics2D.gravity.y) * _gravityMultiplier * Time.deltaTime; 
             }
         }
 
-        if (!IsGrounded())
-        {
-            if (_leftCommand)
-            {
-                _rb.AddForce(Vector2.left * _runSpeed/1.5f, ForceMode2D.Impulse);
-                _leftCommand = false;
-                Quaternion rotation = transform.localRotation;
-                rotation.y = 180;
-                transform.localRotation = rotation;
-            }
-            else if (_rightCommand)
-            {
-                _rb.AddForce(Vector2.right * _runSpeed/1.5f, ForceMode2D.Impulse);
-                _rightCommand = false;
-                Quaternion rotation = transform.localRotation;
-                rotation.y = 0;
-                transform.localRotation = rotation;
-            }
-        }
-        else
-        {
             if (_leftCommand)
             {
                 _rb.velocity = new Vector2(-_runSpeed, _rb.velocity.y);
@@ -143,7 +120,6 @@ public class PlayerController : MonoBehaviour
                 rotation.y = 0;
                 transform.localRotation = rotation;
             }
-        }
     }
 
     private bool IsGrounded()
