@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ebs: {fileID: 11400000, guid: 9e9cc6f3f02fea74a9b740ab72bfafb2, type: 2}
+  _ps: {fileID: 11400000, guid: b4a7f7721e378294ea3a2735bea3d2d4, type: 2}
 --- !u!212 &430584683887811515
 SpriteRenderer:
   m_ObjectHideFlags: 0
