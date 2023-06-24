@@ -94645,7 +94645,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 424695294}
         m_TargetAssemblyTypeName: PanelManager, Assembly-CSharp
-        m_MethodName: villageScene
+        m_MethodName: VillageScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -98319,7 +98319,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 424695294}
         m_TargetAssemblyTypeName: PanelManager, Assembly-CSharp
-        m_MethodName: villageScene
+        m_MethodName: VillageScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -98696,7 +98696,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 424695294}
         m_TargetAssemblyTypeName: PanelManager, Assembly-CSharp
-        m_MethodName: continueGame
+        m_MethodName: ContinueGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

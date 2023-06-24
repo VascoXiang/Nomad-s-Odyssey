@@ -52,6 +52,11 @@ public class PanelManager : MonoBehaviour
 
     public void VillageScene()
     {
+        if (!gameEnded)
+        {
+            _ps.RemoveIron(_ps.GetIronResources());
+            _ps.RemoveWoodResources(_ps.GetWoodResources());
+        }
         SceneManager.LoadScene(1);
         Time.timeScale = 1;
     }

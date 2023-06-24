@@ -12,7 +12,7 @@ public class PlayerStatsScriptableObject : ScriptableObject
     private int currentHealth = 3;
     private int wood = 0;
     private int iron = 0;
-    private int bonusArmor, bonusDamage,bonusSpeed;
+    private int bonusArmor = 1, bonusDamage = 1,bonusSpeed = 1;
 
     // Start is called before the first frame update
     public void EarlyGameStart()
