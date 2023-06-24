@@ -9,8 +9,8 @@ public class GoalPoint : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            _ps.AddIron(200);
-            _ps.AddWoodResources(200);
+            _ps.AddIron(20);
+            _ps.AddWoodResources(20);
             GameObject.Find("Canvas").GetComponent<PanelManager>().endGame();
         }
     }
