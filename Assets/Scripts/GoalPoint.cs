@@ -11,7 +11,7 @@ public class GoalPoint : MonoBehaviour
         {
             _ps.AddIron(20);
             _ps.AddWoodResources(20);
-            GameObject.Find("Canvas").GetComponent<PanelManager>().endGame();
+            GameObject.Find("Canvas").GetComponent<PanelManager>().EndGame();
         }
     }
 }

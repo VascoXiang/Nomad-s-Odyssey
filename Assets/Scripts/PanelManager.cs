@@ -21,18 +21,18 @@ public class PanelManager : MonoBehaviour
     {
         if (!gameEnded && _ps.GetCurrentHealth() <= 0)
         {
-            endGame();
+            EndGame();
         }
 
         if (!gameEnded && Input.GetKeyDown(KeyCode.Escape))
         {
             if (!gamePaused)
-                pauseGame();
+                PauseGame();
             else
-                continueGame();
+                ContinueGame();
         }
     }
-    public void continueGame()
+    public void ContinueGame()
     {
         pauseUI.SetActive(false);
         gamePaused = false;
@@ -41,7 +41,7 @@ public class PanelManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void pauseGame()
+    public void PauseGame()
     {
         pauseUI.SetActive(true);
         gamePaused = true;
@@ -50,19 +50,19 @@ public class PanelManager : MonoBehaviour
         Time.timeScale = 0;
     }
 
-    public void villageScene()
+    public void VillageScene()
     {
         SceneManager.LoadScene(1);
         Time.timeScale = 1;
     }
 
-    public void menu()
+    public void Menu()
     {
         SceneManager.LoadScene(0);
         Time.timeScale = 1;
     }
 
-    public void endGame()
+    public void EndGame()
     {
         if (!gameEnded)
         {

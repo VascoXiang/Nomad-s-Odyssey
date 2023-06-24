@@ -6,8 +6,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "VillageStats ScriptableObject", menuName = "VillageStats ScriptableObject")]
 public class VillageStatsScriptableObject : ScriptableObject
 {
-    [SerializeField] private int wood;
-    [SerializeField] private int iron;
+    private int wood;
+    private int iron;
     private int nextRaid = 2;
     [SerializeField] private StructureScriptableObject ironMine;
     [SerializeField] private StructureScriptableObject market;
@@ -44,8 +44,8 @@ public class VillageStatsScriptableObject : ScriptableObject
 
     public void EarlyGameStart()
     {
-        iron = 0;
-        wood = 0;
+       this.iron = 0;
+        this.wood = 0;
         DefaultStart();
     }
 
@@ -148,7 +148,6 @@ public class VillageStatsScriptableObject : ScriptableObject
     private void DefaultStart()
     {
         Instantiate(principal1, principal1.transform.position, principal1.transform.rotation);
-        EarlyGameStart();
         getMainBuildingScriptableObject().EarlyGameStart();
         getMainBuildingScriptableObject().IncrementLevel();
         getMainBuildingScriptableObject().setBuff(1);
