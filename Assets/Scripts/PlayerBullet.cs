@@ -7,7 +7,7 @@ public class PlayerBullet : MonoBehaviour
     [SerializeField] private ProjectileScriptableObject _ebs;
     private void Awake()
     {
-        Destroy(this.gameObject, 5f);
+        Destroy(this.gameObject, 0.7f);
     }
     // Update is called once per frame
     void Update()
