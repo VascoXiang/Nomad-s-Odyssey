@@ -44,8 +44,6 @@ public class VillageStatsScriptableObject : ScriptableObject
 
     public void EarlyGameStart()
     {
-       this.iron = 0;
-        this.wood = 0;
         DefaultStart();
     }
 
@@ -147,6 +145,8 @@ public class VillageStatsScriptableObject : ScriptableObject
 
     private void DefaultStart()
     {
+        this.iron = 0;
+        this.wood = 0;
         Instantiate(principal1, principal1.transform.position, principal1.transform.rotation);
         getMainBuildingScriptableObject().EarlyGameStart();
         getMainBuildingScriptableObject().IncrementLevel();

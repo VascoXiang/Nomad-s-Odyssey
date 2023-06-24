@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -14,6 +15,10 @@ public class VillageMenus : MonoBehaviour
     [SerializeField] GameObject mineWindow;
     [SerializeField] GameObject marketWindow;
     [SerializeField] GameObject wallWindow;
+
+    // pause menu
+    [SerializeField] GameObject pauseMenu;
+    private Boolean isPauseOpen;
 
     // resources indicators
     [SerializeField] TMP_Text woodIndicator;
@@ -56,8 +61,13 @@ public class VillageMenus : MonoBehaviour
     [SerializeField] GameObject marketLevelUp;
     [SerializeField] GameObject wallLevelUp;
 
+    private Boolean endGameTextShown;
+    [SerializeField] GameObject endGameText;
+
     private void Start()
     {
+        isPauseOpen = false;
+        endGameTextShown = false;
         int currentMainBuildingLevel = villageStats.getMainBuildingScriptableObject().GetLevel();
         int currentMineLevel = villageStats.getMineScriptableObject().GetLevel();
         int currentMarketLevel = villageStats.getMarketScriptableObject().GetLevel();
@@ -123,23 +133,33 @@ public class VillageMenus : MonoBehaviour
                 villageStats.WallLevel2();
                 break;
         }
-        villageStats.AddIron(playerStats.GetIronResources());
-        villageStats.AddWood(playerStats.GetWoodResources());
+        villageStats.AddIron(playerStats.GetIronResources() * villageStats.getMineScriptableObject().GetBuff());
+        villageStats.AddWood(playerStats.GetWoodResources() * villageStats.getSawmillScriptableObject().GetBuff());
     }
 
 
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePauseMenu();
+        }
+
         int currentIron = villageStats.GetIronResources();
         int currentWood = villageStats.GetWoodResources();
+
+        int levelMain = villageStats.getMainBuildingScriptableObject().GetLevel();
+        int levelWall = villageStats.getWallScriptableObject().GetLevel();
+        int levelSawmill = villageStats.getSawmillScriptableObject().GetLevel();
+        int levelMine = villageStats.getMineScriptableObject().GetLevel();
+        int levelMarket = villageStats.getMarketScriptableObject().GetLevel();
 
         woodIndicator.text = currentWood.ToString();
         ironIndicator.text = currentIron.ToString();
 
         if (mainBuildingWindow.activeSelf)
         {
-            int levelMain = villageStats.getMainBuildingScriptableObject().GetLevel();
             mainLevel.text = levelMain + "";
             mainBuff.text = villageStats.getMainBuildingScriptableObject().GetBuff() + "x Damage";
             int ironNeeded = villageStats.getMainBuildingScriptableObject().GetRequirementsLevel(levelMain + 1)[0];
@@ -156,7 +176,6 @@ public class VillageMenus : MonoBehaviour
 
         if (sawmillWindow.activeSelf)
         {
-            int levelSawmill = villageStats.getSawmillScriptableObject().GetLevel();
             sawmillLevel.text = levelSawmill + "";
             sawmillBuff.text = villageStats.getSawmillScriptableObject().GetBuff() + "x Wood in Raid";
             int ironNeeded = villageStats.getSawmillScriptableObject().GetRequirementsLevel(levelSawmill + 1)[0];
@@ -173,7 +192,6 @@ public class VillageMenus : MonoBehaviour
 
         if (mineWindow.activeSelf)
         {
-            int levelMine = villageStats.getMineScriptableObject().GetLevel();
             mineLevel.text = levelMine + "";
             mineBuff.text = villageStats.getMineScriptableObject().GetBuff() + "x Iron in Raid";
             int ironNeeded = villageStats.getMineScriptableObject().GetRequirementsLevel(levelMine + 1)[0];
@@ -190,9 +208,8 @@ public class VillageMenus : MonoBehaviour
 
         if (marketWindow.activeSelf)
         {
-            int levelMarket = villageStats.getMarketScriptableObject().GetLevel();
-            marketLevel.text = levelMarket + "x ";
-            marketBuff.text = villageStats.getMarketScriptableObject().GetBuff() + "x Speed";
+            marketLevel.text = levelMarket + "";
+            marketBuff.text = villageStats.getMarketScriptableObject().GetBuff() + "+ Speed";
             int ironNeeded = villageStats.getMarketScriptableObject().GetRequirementsLevel(levelMarket + 1)[0];
             int woodNeeded = villageStats.getMarketScriptableObject().GetRequirementsLevel(levelMarket + 1)[1];
             marketIronNeeded.text = ironNeeded.ToString();
@@ -207,7 +224,6 @@ public class VillageMenus : MonoBehaviour
 
         if (wallWindow.activeSelf)
         {
-            int levelWall = villageStats.getWallScriptableObject().GetLevel();
             wallLevel.text = levelWall + "";
             wallBuff.text = "1/" + villageStats.getWallScriptableObject().GetBuff() + " Damage Taken";
             int ironNeeded = villageStats.getWallScriptableObject().GetRequirementsLevel(levelWall + 1)[0];
@@ -221,7 +237,17 @@ public class VillageMenus : MonoBehaviour
             }
             else wallLevelUp.SetActive(false);
         }
+        if (levelMain == 3 && levelMarket == 3 && levelMine == 3 && levelSawmill == 3 && levelWall == 3 && !endGameTextShown)
+        {
+            endGameText.SetActive(true);
+        }
 
+    }
+
+    public void CloseEndGameText()
+    {
+        endGameTextShown = true;
+        endGameText.SetActive(false);
     }
 
     public void OpenMainBuildingWindow()
@@ -343,5 +369,27 @@ public class VillageMenus : MonoBehaviour
             SceneManager.LoadScene(3);
         }
 
+    }
+
+    public void TogglePauseMenu()
+    {
+        if (isPauseOpen)
+        {
+            pauseMenu.SetActive(false);
+            Time.timeScale = 1.0f;
+            isPauseOpen = false;
+        }
+        else
+        {
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0;
+            isPauseOpen = true;
+        }
+    }
+
+    public void ExitToMenu()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene(0);
     }
 }
