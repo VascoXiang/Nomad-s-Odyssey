@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41014f8c231db604f9ce6b16d1c524bd, type: 3}
   m_Name: Wall
   m_EditorClassIdentifier: 
-  level: 3
-  buff: 4
-  ironRequirementLevel1: 1
-  ironRequirementLevel2: 1
-  ironRequirementLevel3: 1
-  woodRequirementLevel1: 1
-  woodRequirementLevel2: 1
-  woodRequirementLevel3: 1
+  level: 2
+  buff: 3
+  ironRequirementLevel1: 30
+  ironRequirementLevel2: 100
+  ironRequirementLevel3: 200
+  woodRequirementLevel1: 200
+  woodRequirementLevel2: 400
+  woodRequirementLevel3: 500

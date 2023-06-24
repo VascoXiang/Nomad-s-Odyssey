@@ -62,7 +62,7 @@ public class VillageStatsScriptableObject : ScriptableObject
                     this.wood -= requirements[1];
                     ironMine.IncrementLevel();
                     if (nextLevel == 1) MineLevel1();
-                    else if(nextLevel == 2) MineLevel2();
+                    else if (nextLevel == 2) MineLevel2();
                     else if (nextLevel == 3) MineLevel3();
                 }
                 break;
@@ -73,8 +73,8 @@ public class VillageStatsScriptableObject : ScriptableObject
                     this.iron -= requirements[0];
                     this.wood -= requirements[1];
                     market.IncrementLevel();
-                    if(nextLevel == 1) MarketLevel1();
-                    else if( nextLevel == 2) MarketLevel2();
+                    if (nextLevel == 1) MarketLevel1();
+                    else if (nextLevel == 2) MarketLevel2();
                     else if (nextLevel == 3) MarketLevel3();
                 }
                 break;
@@ -96,7 +96,7 @@ public class VillageStatsScriptableObject : ScriptableObject
                     this.iron -= requirements[0];
                     this.wood -= requirements[1];
                     sawmill.IncrementLevel();
-                    if(nextLevel == 1) SawmillLevel1();
+                    if (nextLevel == 1) SawmillLevel1();
                     else if (nextLevel == 2) SawmillLevel2();
                 }
                 break;
@@ -124,7 +124,7 @@ public class VillageStatsScriptableObject : ScriptableObject
         return iron;
     }
 
-    public void AddWoodResources(int wood)
+    public void AddWood(int wood)
     {
         this.wood += wood;
     }
@@ -151,59 +151,60 @@ public class VillageStatsScriptableObject : ScriptableObject
         EarlyGameStart();
         getMainBuildingScriptableObject().EarlyGameStart();
         getMainBuildingScriptableObject().IncrementLevel();
+        getMainBuildingScriptableObject().setBuff(1);
     }
 
-    void PrincipalLevel2()
+    public void PrincipalLevel2()
     {
         Instantiate(principal2, principal2.transform.position, principal2.transform.rotation);
     }
 
-    void PrincipalLevel3()
+    public void PrincipalLevel3()
     {
         Instantiate(principal3, principal3.transform.position, principal3.transform.rotation);
     }
 
-    void SawmillLevel1()
+    public void SawmillLevel1()
     {
         Instantiate(sawmill1, sawmill1.transform.position, sawmill1.transform.rotation);
     }
 
-    void SawmillLevel2()
+    public void SawmillLevel2()
     {
         Instantiate(sawmill2, sawmill2.transform.position, sawmill2.transform.rotation);
     }
 
-    void MarketLevel1()
+    public void MarketLevel1()
     {
         Instantiate(market1, market1.transform.position, market1.transform.rotation);
     }
 
-    void MarketLevel2()
+    public void MarketLevel2()
     {
         Instantiate(market2, market2.transform.position, market2.transform.rotation);
     }
 
-    void MarketLevel3()
+    public void MarketLevel3()
     {
         Instantiate(market3, market3.transform.position, market3.transform.rotation);
     }
 
-    void MineLevel1()
+    public void MineLevel1()
     {
         Instantiate(mine1, mine1.transform.position, mine1.transform.rotation);
     }
 
-    void MineLevel2()
+    public void MineLevel2()
     {
         Instantiate(mine2, mine2.transform.position, mine2.transform.rotation);
     }
 
-    void MineLevel3()
+    public void MineLevel3()
     {
         Instantiate(mine3, mine3.transform.position, mine3.transform.rotation);
     }
 
-    void WallLevel1()
+    public void WallLevel1()
     {
         Instantiate(startingWall1, startingWall1.transform.position, startingWall1.transform.rotation);
         Instantiate(startingWall2, startingWall2.transform.position, startingWall2.transform.rotation);
@@ -219,7 +220,7 @@ public class VillageStatsScriptableObject : ScriptableObject
         Instantiate(startingWall12, startingWall12.transform.position, startingWall12.transform.rotation);
     }
 
-    void WallLevel2()
+    public void WallLevel2()
     {
         Instantiate(wall2, wall2.transform.position, wall2.transform.rotation);
     }

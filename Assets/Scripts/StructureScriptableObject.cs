@@ -74,7 +74,7 @@ public class StructureScriptableObject : ScriptableObject
         }
     }
 
-    private void setBuff(int buff)
+    public void setBuff(int buff)
     {
         this.buff = buff;
     }
