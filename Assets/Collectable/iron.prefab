@@ -50,6 +50,7 @@ MonoBehaviour:
   _ps: {fileID: 11400000, guid: b4a7f7721e378294ea3a2735bea3d2d4, type: 2}
   _type: 0
   _amount: 5
+  sound: {fileID: 683595914385076992, guid: e328a8858a6f40842a6d9df754663d7d, type: 3}
 --- !u!212 &5731771837835190472
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     [SerializeField] private ProjectileScriptableObject _ebs;
+     
     private void Awake()
     {
         Destroy(this.gameObject, 5f);
@@ -24,7 +25,7 @@ public class EnemyBullet : MonoBehaviour
             if (collision.gameObject.tag == "Player")
             {
                 collision.gameObject.GetComponent<PlayerCombat>().TakeDamage(_ebs.getDamage());
-
+                collision.GetComponent<AudioSource>().Play();
                 //Vector2 direction = (collision.gameObject.transform.position - this.gameObject.transform.position);
                 //collision.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * _ebs.Bullet_force, ForceMode2D.Impulse);
             }

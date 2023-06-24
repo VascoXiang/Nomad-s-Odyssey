@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ebs: {fileID: 11400000, guid: a42d0de7d9d89e8449e158f46fe594bd, type: 2}
+  _clipDamage: {fileID: 8300000, guid: bb9bae770bc6d8f46858e970825284b2, type: 3}
 --- !u!212 &5294791794240134290
 SpriteRenderer:
   m_ObjectHideFlags: 0

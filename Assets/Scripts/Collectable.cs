@@ -7,15 +7,20 @@ public class Collectable : MonoBehaviour
     [SerializeField] private PlayerStatsScriptableObject _ps;
     [SerializeField] private TypeItem _type;
     [SerializeField] private int _amount;
-    //[SerializeField] private AudioClip plim_sound;
+    [SerializeField] private GameObject sound;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
             givePoints();
-            //AudioSource.PlayClipAtPoint(plim_sound, transform.position);
+            PlaySound();
             Destroy(this.gameObject);
         }
+    }
+
+    private void PlaySound()
+    {
+        Instantiate(sound,transform.position, Quaternion.identity);
     }
 
     public void givePoints()
