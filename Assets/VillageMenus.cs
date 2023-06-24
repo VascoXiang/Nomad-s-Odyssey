@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class VillageMenus : MonoBehaviour
 {
-
     [SerializeField] VillageStatsScriptableObject villageStats;
     [SerializeField] PlayerStatsScriptableObject playerStats;
 
@@ -327,5 +327,21 @@ public class VillageMenus : MonoBehaviour
         int levelWall = villageStats.getWallScriptableObject().GetLevel();
         villageStats.IncrementStructureLevel("wall", levelWall + 1);
         CloseWallWindow();
+    }
+
+    public void GoToRaid()
+    {
+        int nextRaid = villageStats.getNextRaid();
+        if (nextRaid == 2)
+        {
+            villageStats.setNextRaid(3);
+            SceneManager.LoadScene(2);
+        }
+        else
+        {
+            villageStats.setNextRaid(2);
+            SceneManager.LoadScene(3);
+        }
+
     }
 }

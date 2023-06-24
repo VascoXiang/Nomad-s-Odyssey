@@ -6,12 +6,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerStats ScriptableObject", menuName = "PlayerStats ScriptableObject")]
 public class PlayerStatsScriptableObject : ScriptableObject
 {
+    [SerializeField] VillageStatsScriptableObject villageStats;
     [SerializeField] private int MAX_HEALTH = 3;
     private int maxHealth = 3;
     private int currentHealth = 3;
     private int wood = 0;
     private int iron = 0;
-    private Boolean bonusArmor, bonusDamage, bonusSpeed;
+    private int bonusArmor, bonusDamage,bonusSpeed;
 
     // Start is called before the first frame update
     public void EarlyGameStart()
@@ -20,9 +21,9 @@ public class PlayerStatsScriptableObject : ScriptableObject
         currentHealth = MAX_HEALTH;
         iron = 0;
         wood = 0;
-        bonusArmor = false;
-        bonusDamage = false;
-        bonusSpeed = false;
+        bonusArmor = 1;
+        bonusDamage = 1;
+        bonusSpeed = 1;
     }
 
 
@@ -34,26 +35,26 @@ public class PlayerStatsScriptableObject : ScriptableObject
         wood = 0;
     }
 
-
-
-    public void SetBonusActive(String bonus)
+    public void setBonusArmor(int bonusArmor)
     {
-        switch (bonus)
-        {
-            case "armor":
-                this.bonusArmor = true; break;
-            case "damage":
-                this.bonusDamage = true; break;
-            case "speed":
-                this.bonusSpeed = true; break;
-        }
+        this.bonusArmor =  bonusArmor;
     }
+
+    public void setBonusSpeed(int bonusSpeed)
+    {
+        this.bonusSpeed = bonusSpeed;
+    }
+
+    public void setBonusDamage(int bonusDamage)
+    {
+        this.bonusDamage = bonusDamage;
+    }
+
+
 
     public void GetHit(int damage)
     {
-        if (bonusArmor) currentHealth -= damage / 2;
-
-        else currentHealth -= damage;
+        currentHealth -= damage / bonusArmor;
 
         if(currentHealth <= 0)
         {

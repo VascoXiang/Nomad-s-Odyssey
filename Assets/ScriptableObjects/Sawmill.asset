@@ -15,8 +15,8 @@ MonoBehaviour:
   level: 0
   buff: 1
   ironRequirementLevel1: 0
-  ironRequirementLevel2: 50
-  ironRequirementLevel3: 150
-  woodRequirementLevel1: 50
-  woodRequirementLevel2: 400
-  woodRequirementLevel3: 550
+  ironRequirementLevel2: 150
+  ironRequirementLevel3: 700
+  woodRequirementLevel1: 80
+  woodRequirementLevel2: 550
+  woodRequirementLevel3: 1050

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b9ff4f3af8877748a43fc1989a2d832, type: 3}
   m_Name: ClanVillage
   m_EditorClassIdentifier: 
-  wood: 9985
-  iron: 9985
+  wood: 25
+  iron: 30
   ironMine: {fileID: 11400000, guid: 18e8cec464d3d3a4e813026b4d419bd7, type: 2}
   market: {fileID: 11400000, guid: e6916b99841a7264a863d9a835198a97, type: 2}
   mainBuilding: {fileID: 11400000, guid: 3f4a11768c3965a4aaf1a5be9375db0e, type: 2}

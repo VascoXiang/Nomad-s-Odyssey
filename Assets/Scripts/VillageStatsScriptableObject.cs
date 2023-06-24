@@ -8,6 +8,7 @@ public class VillageStatsScriptableObject : ScriptableObject
 {
     [SerializeField] private int wood;
     [SerializeField] private int iron;
+    private int nextRaid = 2;
     [SerializeField] private StructureScriptableObject ironMine;
     [SerializeField] private StructureScriptableObject market;
     [SerializeField] private StructureScriptableObject mainBuilding;
@@ -41,7 +42,6 @@ public class VillageStatsScriptableObject : ScriptableObject
     [SerializeField] GameObject wall2;
 
 
-    // Start is called before the first frame update
     public void EarlyGameStart()
     {
         iron = 0;
@@ -152,6 +152,10 @@ public class VillageStatsScriptableObject : ScriptableObject
         getMainBuildingScriptableObject().EarlyGameStart();
         getMainBuildingScriptableObject().IncrementLevel();
         getMainBuildingScriptableObject().setBuff(1);
+        getMarketScriptableObject().EarlyGameStart();
+        getMineScriptableObject().EarlyGameStart();
+        getSawmillScriptableObject().EarlyGameStart();
+        getWallScriptableObject().EarlyGameStart();
     }
 
     public void PrincipalLevel2()
@@ -223,5 +227,15 @@ public class VillageStatsScriptableObject : ScriptableObject
     public void WallLevel2()
     {
         Instantiate(wall2, wall2.transform.position, wall2.transform.rotation);
+    }
+
+    public int getNextRaid()
+    {
+        return nextRaid;
+    }
+
+    public void setNextRaid(int nextRaid)
+    {
+        this.nextRaid = nextRaid;
     }
 }
