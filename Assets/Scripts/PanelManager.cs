@@ -13,6 +13,8 @@ public class PanelManager : MonoBehaviour
     [SerializeField] private GameObject pauseUI;
     [SerializeField] private TMP_Text text_wood_points;
     [SerializeField] private TMP_Text text_iron_points;
+    [SerializeField] private TMP_Text number_wood_points;
+    [SerializeField] private TMP_Text number_iron_points;
     [SerializeField] private PlayerStatsScriptableObject _ps;
     [SerializeField] private GameObject _player;
 
@@ -31,6 +33,8 @@ public class PanelManager : MonoBehaviour
             else
                 ContinueGame();
         }
+        number_wood_points.text = _ps.GetWoodResources() + "";
+        number_iron_points.text = _ps.GetIronResources() + "";
     }
     public void ContinueGame()
     {
