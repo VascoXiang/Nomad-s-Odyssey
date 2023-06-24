@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private float _buttonPressedTime;
     private Animator _animator;
 
+    [SerializeField] private PlayerStatsScriptableObject _ps;
     [SerializeField] private float _runSpeed = 1.0f;
     [SerializeField] private float _jumpHeight = 3.0f;
 
@@ -106,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
             if (_leftCommand)
             {
-                _rb.velocity = new Vector2(-_runSpeed, _rb.velocity.y);
+                _rb.velocity = new Vector2(-_runSpeed + _ps.getBonusSpeed(), _rb.velocity.y);
                 _leftCommand = false;
                 Quaternion rotation = transform.localRotation;
                 rotation.y = 180;
@@ -114,7 +115,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (_rightCommand)
             {
-                _rb.velocity = new Vector2(_runSpeed, _rb.velocity.y);
+                _rb.velocity = new Vector2(_runSpeed + _ps.getBonusSpeed(), _rb.velocity.y);
                 _rightCommand = false;
                 Quaternion rotation = transform.localRotation;
                 rotation.y = 0;

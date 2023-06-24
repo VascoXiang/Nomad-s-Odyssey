@@ -51,6 +51,22 @@ public class PlayerStatsScriptableObject : ScriptableObject
     }
 
 
+    public int getBonusArmor()
+    {
+        return bonusArmor;
+    }
+
+    public int getBonusSpeed()
+    {
+        return bonusSpeed;
+    }
+
+    public int getBonusDamage()
+    {
+        return bonusDamage;
+    }
+
+
 
     public void GetHit(int damage)
     {
