@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+/// <summary>
+/// Structure Scriptable Object that contains each building's info on requirements to improve, level and buffs
+/// </summary>
 [CreateAssetMenu(fileName = "StructureStats ScriptableObject", menuName = "StructureStats ScriptableObject")]
-
-
 public class StructureScriptableObject : ScriptableObject
 {
     [SerializeField] private int level;
@@ -16,20 +18,34 @@ public class StructureScriptableObject : ScriptableObject
     [SerializeField] private int woodRequirementLevel2 = 1;
     [SerializeField] private int woodRequirementLevel3 = 1;
    
-    // Start is called before the first frame update
+
+    /// <summary>
+    /// Defines the level 0 for each building
+    /// </summary>
     public void EarlyGameStart()
     {
         level = 0;
         buff = 1;
     }
-
+    /// <summary>
+    /// Returns the level of the building
+    /// </summary>
+    /// <returns>Level of the building</returns>
     public int GetLevel()
     {
         return level;
     }
-
+    /// <summary>
+    /// Returns the value of the buff
+    /// </summary>
+    /// <returns>Value of the buff (multiplier or additive value)</returns>
     public int GetBuff() { return buff; }
 
+    /// <summary>
+    /// Given the level, returns the iron and wood requirements for that specific level for the building
+    /// </summary>
+    /// <param name="level">Level whose resources requirements are returned</param>
+    /// <returns>int[] with two values: [0] is iron requirement and [1] is wood requirement</returns>
     public int[] GetRequirementsLevel(int level)
     {
 
@@ -56,7 +72,9 @@ public class StructureScriptableObject : ScriptableObject
 
         return requirements;
     }
-
+    /// <summary>
+    /// Increments a level to the building
+    /// </summary>
     public void IncrementLevel()
     {
         level++;
@@ -73,7 +91,10 @@ public class StructureScriptableObject : ScriptableObject
             setBuff(4);
         }
     }
-
+    /// <summary>
+    /// Sets a specific value for the buff multiplier/additive value
+    /// </summary>
+    /// <param name="buff">Integer number to set to the building's buff value</param>
     public void setBuff(int buff)
     {
         this.buff = buff;

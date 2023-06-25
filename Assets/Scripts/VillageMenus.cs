@@ -4,7 +4,11 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+/// <summary>
+/// Class VillageMenus represents a full Controller of the 3D Village Scene.
+/// It deals with all the info windows appearing/closing and the resource management and 
+/// leveling of the different buildings
+/// </summary>
 public class VillageMenus : MonoBehaviour
 {
     [SerializeField] private VillageStatsScriptableObject villageStats;
@@ -65,6 +69,10 @@ public class VillageMenus : MonoBehaviour
     private Boolean endGameTextShown;
     [SerializeField] private GameObject endGameText;
 
+    /// <summary>
+    /// Depending on the current levels of the buildings, it manages their spawns on scene
+    /// everytime this scene is loaded
+    /// </summary>
     private void Start()
     {
         isPauseOpen = false;
@@ -139,7 +147,12 @@ public class VillageMenus : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// Update method that keeps the resources indicator updated. Also makes sure the level up buttons
+    /// only appear if the village does have the resources to level u the building.
+    /// Makes sure pause menu opens on Esc press.
+    /// End of the game, when all buildings are lvl 3 -> shows a window telling the player they have beat the game
+    /// </summary>
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -244,13 +257,17 @@ public class VillageMenus : MonoBehaviour
         }
 
     }
-
+    /// <summary>
+    /// Closes the EndGameText window
+    /// </summary>
     public void CloseEndGameText()
     {
         endGameTextShown = true;
         endGameText.SetActive(false);
     }
-
+    /// <summary>
+    /// Open the Main Building info window
+    /// </summary>
     public void OpenMainBuildingWindow()
     {
         mainBuildingWindow.SetActive(true);
@@ -259,12 +276,16 @@ public class VillageMenus : MonoBehaviour
         wallWindow.SetActive(false);
         mineWindow.SetActive(false);
     }
-
+    /// <summary>
+    /// Close the Main Building info window
+    /// </summary>
     public void CloseMainBuildingWindow()
     {
         mainBuildingWindow.SetActive(false);
     }
-
+    /// <summary>
+    /// Open the Sawmill info window
+    /// </summary>
     public void OpenSawmillWindow()
     {
         mainBuildingWindow.SetActive(false);
@@ -273,12 +294,16 @@ public class VillageMenus : MonoBehaviour
         wallWindow.SetActive(false);
         mineWindow.SetActive(false);
     }
-
+    /// <summary>
+    /// Close the Sawmill info window
+    /// </summary>
     public void CloseSawmillWindow()
     {
         sawmillWindow.SetActive(false);
     }
-
+    /// <summary>
+    /// Open the Market info window
+    /// </summary>
     public void OpenMarketWindow()
     {
         mainBuildingWindow.SetActive(false);
@@ -287,12 +312,16 @@ public class VillageMenus : MonoBehaviour
         wallWindow.SetActive(false);
         mineWindow.SetActive(false);
     }
-
+    /// <summary>
+    /// Close the Sawmill info window
+    /// </summary>
     public void CloseMarketWindow()
     {
         marketWindow.SetActive(false);
     }
-
+    /// <summary>
+    /// Open the Wall info window
+    /// </summary>
     public void OpenWallWindow()
     {
         mainBuildingWindow.SetActive(false);
@@ -301,12 +330,16 @@ public class VillageMenus : MonoBehaviour
         wallWindow.SetActive(true);
         mineWindow.SetActive(false);
     }
-
+    /// <summary>
+    /// Close the Sawmill info window
+    /// </summary>
     public void CloseWallWindow()
     {
         wallWindow.SetActive(false);
     }
-
+    /// <summary>
+    /// Open the Mine info window
+    /// </summary>
     public void OpenMineWindow()
     {
         mainBuildingWindow.SetActive(false);
@@ -315,47 +348,70 @@ public class VillageMenus : MonoBehaviour
         wallWindow.SetActive(false);
         mineWindow.SetActive(true);
     }
-
+    /// <summary>
+    /// Close the Sawmill info window
+    /// </summary>
     public void CloseMineWindow()
     {
         mineWindow.SetActive(false);
     }
-
+    /// <summary>
+    /// Levels up the Main Building
+    /// </summary>
     public void LevelUpMainBuilding()
     {
         int levelMain = villageStats.getMainBuildingScriptableObject().GetLevel();
         villageStats.IncrementStructureLevel("mainBuilding", levelMain + 1);
+        if(levelMain+1 == 2)
+        {
+            villageStats.getMainBuildingScriptableObject().setBuff(2);
+        }
+        else if (levelMain+1 == 3)
+        {
+            villageStats.getMainBuildingScriptableObject().setBuff(3);
+        }
+        playerStats.setBonusDamage(villageStats.getMainBuildingScriptableObject().GetBuff());
         CloseMainBuildingWindow();
     }
-
+    /// <summary>
+    /// Levels up the Market
+    /// </summary>
     public void LevelUpMarket()
     {
         int levelMarket = villageStats.getMarketScriptableObject().GetLevel();
         villageStats.IncrementStructureLevel("market", levelMarket + 1);
         CloseMarketWindow();
     }
-
+    /// <summary>
+    /// Levels up the Mine
+    /// </summary>
     public void LevelUpMine()
     {
         int levelMine = villageStats.getMineScriptableObject().GetLevel();
         villageStats.IncrementStructureLevel("ironMine", levelMine + 1);
         CloseMineWindow();
     }
-
+    /// <summary>
+    /// Levels up the Sawmmill
+    /// </summary>
     public void LevelUpSawmill()
     {
         int levelSawmill = villageStats.getSawmillScriptableObject().GetLevel();
         villageStats.IncrementStructureLevel("sawmill", levelSawmill + 1);
         CloseSawmillWindow();
     }
-
+    /// <summary>
+    /// Levels up the Wall
+    /// </summary>
     public void LevelUpWall()
     {
         int levelWall = villageStats.getWallScriptableObject().GetLevel();
         villageStats.IncrementStructureLevel("wall", levelWall + 1);
         CloseWallWindow();
     }
-
+   /// <summary>
+   /// Changes Scene to a raid, depending on the value of the next raid
+   /// </summary>
     public void GoToRaid()
     {
         int nextRaid = villageStats.getNextRaid();
@@ -371,7 +427,9 @@ public class VillageMenus : MonoBehaviour
         }
 
     }
-
+    /// <summary>
+    /// Toggle show/hide the Pause Menu
+    /// </summary>
     public void TogglePauseMenu()
     {
         if (isPauseOpen)
@@ -387,7 +445,9 @@ public class VillageMenus : MonoBehaviour
             isPauseOpen = true;
         }
     }
-
+    /// <summary>
+    /// Exits to Main Menu
+    /// </summary>
     public void ExitToMenu()
     {
         Time.timeScale = 1.0f;

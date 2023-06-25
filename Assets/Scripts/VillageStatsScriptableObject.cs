@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Scriptable Object for the whole village, which contains reference to all the buildings
+/// scriptable objects, current resources in the settlement and number of the raid to load next
+/// </summary>
 [CreateAssetMenu(fileName = "VillageStats ScriptableObject", menuName = "VillageStats ScriptableObject")]
 public class VillageStatsScriptableObject : ScriptableObject
 {
@@ -15,38 +19,44 @@ public class VillageStatsScriptableObject : ScriptableObject
     [SerializeField] private StructureScriptableObject sawmill;
     [SerializeField] private StructureScriptableObject wall;
 
+    [SerializeField] private GameObject principal1;
+    [SerializeField] private GameObject principal2;
+    [SerializeField] private GameObject principal3;
+    [SerializeField] private GameObject sawmill1;
+    [SerializeField] private GameObject sawmill2;
+    [SerializeField] private GameObject market1;
+    [SerializeField] private GameObject market2;
+    [SerializeField] private GameObject market3;
+    [SerializeField] private GameObject mine1;
+    [SerializeField] private GameObject mine2;
+    [SerializeField] private GameObject mine3;
+    [SerializeField] private GameObject startingWall1;
+    [SerializeField] private GameObject startingWall2;
+    [SerializeField] private GameObject startingWall3;
+    [SerializeField] private GameObject startingWall4;
+    [SerializeField] private GameObject startingWall5;
+    [SerializeField] private GameObject startingWall6;
+    [SerializeField] private GameObject startingWall7;
+    [SerializeField] private GameObject startingWall8;
+    [SerializeField] private GameObject startingWall9;
+    [SerializeField] private GameObject startingWall10;
+    [SerializeField] private GameObject startingWall11;
+    [SerializeField] private GameObject startingWall12;
+    [SerializeField] private GameObject wall2;
 
-    [SerializeField] GameObject principal1;
-    [SerializeField] GameObject principal2;
-    [SerializeField] GameObject principal3;
-    [SerializeField] GameObject sawmill1;
-    [SerializeField] GameObject sawmill2;
-    [SerializeField] GameObject market1;
-    [SerializeField] GameObject market2;
-    [SerializeField] GameObject market3;
-    [SerializeField] GameObject mine1;
-    [SerializeField] GameObject mine2;
-    [SerializeField] GameObject mine3;
-    [SerializeField] GameObject startingWall1;
-    [SerializeField] GameObject startingWall2;
-    [SerializeField] GameObject startingWall3;
-    [SerializeField] GameObject startingWall4;
-    [SerializeField] GameObject startingWall5;
-    [SerializeField] GameObject startingWall6;
-    [SerializeField] GameObject startingWall7;
-    [SerializeField] GameObject startingWall8;
-    [SerializeField] GameObject startingWall9;
-    [SerializeField] GameObject startingWall10;
-    [SerializeField] GameObject startingWall11;
-    [SerializeField] GameObject startingWall12;
-    [SerializeField] GameObject wall2;
-
-
+    /// <summary>
+    /// Defines the start of the game for the village, including spawning the main building on level 1
+    /// and other assortments
+    /// </summary>
     public void EarlyGameStart()
     {
         DefaultStart();
     }
-
+    /// <summary>
+    /// Increments the level of a given structure, given it's next level
+    /// </summary>
+    /// <param name="structure">String name of the structure to level up</param>
+    /// <param name="nextLevel">Integer next level of the Structure to level</param>
     public void IncrementStructureLevel(String structure, int nextLevel)
     {
         int[] requirements = new int[2];
@@ -111,38 +121,69 @@ public class VillageStatsScriptableObject : ScriptableObject
                 break;
         }
     }
-
+    /// <summary>
+    /// Adds iron to the village
+    /// </summary>
+    /// <param name="iron">Number of iron to add</param>
     public void AddIron(int iron)
     {
         this.iron += iron;
     }
-
+    /// <summary>
+    /// Returns the iron in village
+    /// </summary>
+    /// <returns>Iron in village</returns>
     public int GetIronResources()
     {
         return iron;
     }
-
+    /// <summary>
+    /// Adds wood to the village
+    /// </summary>
+    /// <param name="wood">Number of wood to add</param>
     public void AddWood(int wood)
     {
         this.wood += wood;
     }
-
+    /// <summary>
+    /// Returns the wood in village
+    /// </summary>
+    /// <returns>Wood in village</returns>
     public int GetWoodResources()
     {
         return wood;
     }
 
+    /// <summary>
+    /// Getter of the Mine Scriptable Object
+    /// </summary>
+    /// <returns>Mine Scriptable Object</returns>
     public StructureScriptableObject getMineScriptableObject() { return ironMine; }
-
+    /// <summary>
+    /// Getter of the Wall Scriptable Object
+    /// </summary>
+    /// <returns>Wall Scriptable Object</returns>
     public StructureScriptableObject getWallScriptableObject() { return wall; }
-
+    /// <summary>
+    /// Getter of the Market Scriptable Object
+    /// </summary>
+    /// <returns>Market Scriptable Object</returns>
     public StructureScriptableObject getMarketScriptableObject() { return market; }
-
+    /// <summary>
+    /// Getter of the Main Building Scriptable Object
+    /// </summary>
+    /// <returns>Main Building Scriptable Object</returns>
     public StructureScriptableObject getMainBuildingScriptableObject() { return mainBuilding; }
-
+    /// <summary>
+    /// Getter of the Sawmill Scriptable Object
+    /// </summary>
+    /// <returns>Sawmill Scriptable Object</returns>
     public StructureScriptableObject getSawmillScriptableObject() { return sawmill; }
 
-
+    /// <summary>
+    /// The Default start of the village in early game. 0 resources, only Main Building at level 1 and
+    /// resets the remaining buildings to level 0
+    /// </summary>
     private void DefaultStart()
     {
         this.iron = 0;
@@ -156,57 +197,79 @@ public class VillageStatsScriptableObject : ScriptableObject
         getSawmillScriptableObject().EarlyGameStart();
         getWallScriptableObject().EarlyGameStart();
     }
-
+    /// <summary>
+    /// Spawn Main Building Lvl2 Structure
+    /// </summary>
     public void PrincipalLevel2()
     {
         Instantiate(principal2, principal2.transform.position, principal2.transform.rotation);
     }
-
+    /// <summary>
+    /// Spawn Main Building Lvl3 Structure
+    /// </summary>
     public void PrincipalLevel3()
     {
         Instantiate(principal3, principal3.transform.position, principal3.transform.rotation);
     }
-
+    /// <summary>
+    /// Spawn Sawmill Lvl1 Structure
+    /// </summary>
     public void SawmillLevel1()
     {
         Instantiate(sawmill1, sawmill1.transform.position, sawmill1.transform.rotation);
     }
-
+    /// <summary>
+    /// Spawn Sawmill Lvl2 Structure
+    /// </summary>
     public void SawmillLevel2()
     {
         Instantiate(sawmill2, sawmill2.transform.position, sawmill2.transform.rotation);
     }
-
+    /// <summary>
+    /// Spawn Market Lvl1 Structure
+    /// </summary>
     public void MarketLevel1()
     {
         Instantiate(market1, market1.transform.position, market1.transform.rotation);
     }
-
+    /// <summary>
+    /// Spawn Market Lvl2 Structure
+    /// </summary>
     public void MarketLevel2()
     {
         Instantiate(market2, market2.transform.position, market2.transform.rotation);
     }
-
+    /// <summary>
+    /// Spawn Market Lvl3 Structure
+    /// </summary>
     public void MarketLevel3()
     {
         Instantiate(market3, market3.transform.position, market3.transform.rotation);
     }
-
+    /// <summary>
+    /// Spawn Mine Lvl1 Structure
+    /// </summary>
     public void MineLevel1()
     {
         Instantiate(mine1, mine1.transform.position, mine1.transform.rotation);
     }
-
+    /// <summary>
+    /// Spawn Mine Lvl2 Structure
+    /// </summary>
     public void MineLevel2()
     {
         Instantiate(mine2, mine2.transform.position, mine2.transform.rotation);
     }
-
+    /// <summary>
+    /// Spawn Mine Lvl3 Structure
+    /// </summary>
     public void MineLevel3()
     {
         Instantiate(mine3, mine3.transform.position, mine3.transform.rotation);
     }
-
+    /// <summary>
+    /// Spawn Wall Lvl1 Structures
+    /// </summary>
     public void WallLevel1()
     {
         Instantiate(startingWall1, startingWall1.transform.position, startingWall1.transform.rotation);
@@ -223,16 +286,25 @@ public class VillageStatsScriptableObject : ScriptableObject
         Instantiate(startingWall12, startingWall12.transform.position, startingWall12.transform.rotation);
     }
 
+    /// <summary>
+    /// Spawn Wall Lvl2 Structure
+    /// </summary>
     public void WallLevel2()
     {
         Instantiate(wall2, wall2.transform.position, wall2.transform.rotation);
     }
-
+    /// <summary>
+    /// Returns the number of the next raid to load
+    /// </summary>
+    /// <returns>Number of next raid to load</returns>
     public int getNextRaid()
     {
         return nextRaid;
     }
-
+    /// <summary>
+    /// Sets the number of the next raid
+    /// </summary>
+    /// <param name="nextRaid">Value of the next raid to load</param>
     public void setNextRaid(int nextRaid)
     {
         this.nextRaid = nextRaid;

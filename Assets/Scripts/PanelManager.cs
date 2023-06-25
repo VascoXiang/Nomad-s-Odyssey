@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+/// <summary>
+/// Class PanelManager that manages the pause and end game menu on each 2D raid
+/// </summary>
 public class PanelManager : MonoBehaviour
 {
     bool gameEnded = false;
@@ -19,7 +21,11 @@ public class PanelManager : MonoBehaviour
     [SerializeField] private SceneLoaderTransition _sceneTransition;
     [SerializeField] private GameObject _player;
 
-    // Update is called once per frame
+    /// <summary>
+    /// Checks if the player is dead/the raid has ended
+    /// Makes sure Pause menu is displayed on Esc press
+    /// Updates the wood and iron indicators
+    /// </summary>
     void Update()
     {
         if (!gameEnded && _ps.GetCurrentHealth() <= 0)
@@ -37,6 +43,10 @@ public class PanelManager : MonoBehaviour
         number_wood_points.text = _ps.GetWoodResources() + "";
         number_iron_points.text = _ps.GetIronResources() + "";
     }
+    /// <summary>
+    /// Enables all the player controllers and unfreezes time to continue the game
+    /// Also Hides the pause menu window
+    /// </summary>
     public void ContinueGame()
     {
         pauseUI.SetActive(false);
@@ -45,7 +55,10 @@ public class PanelManager : MonoBehaviour
         _player.GetComponent<PlayerCombat>().enabled = true;
         Time.timeScale = 1;
     }
-
+    /// <summary>
+    /// Disables all the player controllers and freezes time to pause the game
+    /// Also Displays the pause menu window
+    /// </summary>
     public void PauseGame()
     {
         pauseUI.SetActive(true);
@@ -54,7 +67,9 @@ public class PanelManager : MonoBehaviour
         _player.GetComponent<PlayerCombat>().enabled = false;
         Time.timeScale = 0;
     }
-
+    /// <summary>
+    /// Exits the raid and loads the 3D village Scene
+    /// </summary>
     public void VillageScene()
     {
         if (!gameEnded)
@@ -65,7 +80,10 @@ public class PanelManager : MonoBehaviour
         _sceneTransition.loadSceneWithTransition(1);
         Time.timeScale = 1;
     }
-
+    /// <summary>
+    /// Ends the 2D raid, disables the player controllers, freezes time
+    /// and displays the resources gathered
+    /// </summary>
     public void EndGame()
     {
         if (!gameEnded)
