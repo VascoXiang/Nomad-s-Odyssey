@@ -16,6 +16,7 @@ public class PanelManager : MonoBehaviour
     [SerializeField] private TMP_Text number_wood_points;
     [SerializeField] private TMP_Text number_iron_points;
     [SerializeField] private PlayerStatsScriptableObject _ps;
+    [SerializeField] private SceneLoaderTransition _sceneTransition;
     [SerializeField] private GameObject _player;
 
     // Update is called once per frame
@@ -61,13 +62,7 @@ public class PanelManager : MonoBehaviour
             _ps.RemoveIron(_ps.GetIronResources());
             _ps.RemoveWoodResources(_ps.GetWoodResources());
         }
-        SceneManager.LoadScene(1);
-        Time.timeScale = 1;
-    }
-
-    public void Menu()
-    {
-        SceneManager.LoadScene(0);
+        _sceneTransition.loadSceneWithTransition(1);
         Time.timeScale = 1;
     }
 

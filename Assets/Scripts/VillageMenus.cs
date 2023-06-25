@@ -7,62 +7,63 @@ using UnityEngine.SceneManagement;
 
 public class VillageMenus : MonoBehaviour
 {
-    [SerializeField] VillageStatsScriptableObject villageStats;
-    [SerializeField] PlayerStatsScriptableObject playerStats;
+    [SerializeField] private VillageStatsScriptableObject villageStats;
+    [SerializeField] private PlayerStatsScriptableObject playerStats;
+    [SerializeField] private SceneLoaderTransition _sceneTransition;
 
-    [SerializeField] GameObject mainBuildingWindow;
-    [SerializeField] GameObject sawmillWindow;
-    [SerializeField] GameObject mineWindow;
-    [SerializeField] GameObject marketWindow;
-    [SerializeField] GameObject wallWindow;
+    [SerializeField] private GameObject mainBuildingWindow;
+    [SerializeField] private GameObject sawmillWindow;
+    [SerializeField] private GameObject mineWindow;
+    [SerializeField] private GameObject marketWindow;
+    [SerializeField] private GameObject wallWindow;
 
     // pause menu
-    [SerializeField] GameObject pauseMenu;
+    [SerializeField] private GameObject pauseMenu;
     private Boolean isPauseOpen;
 
     // resources indicators
-    [SerializeField] TMP_Text woodIndicator;
-    [SerializeField] TMP_Text ironIndicator;
+    [SerializeField] private TMP_Text woodIndicator;
+    [SerializeField] private TMP_Text ironIndicator;
 
     // texts from MainBuilding
-    [SerializeField] TMP_Text mainLevel;
-    [SerializeField] TMP_Text mainBuff;
-    [SerializeField] TMP_Text mainIronNeeded;
-    [SerializeField] TMP_Text mainWoodNeeded;
+    [SerializeField] private TMP_Text mainLevel;
+    [SerializeField] private TMP_Text mainBuff;
+    [SerializeField] private TMP_Text mainIronNeeded;
+    [SerializeField] private TMP_Text mainWoodNeeded;
 
     // texts from Sawmill
-    [SerializeField] TMP_Text sawmillLevel;
-    [SerializeField] TMP_Text sawmillBuff;
-    [SerializeField] TMP_Text sawmillIronNeeded;
-    [SerializeField] TMP_Text sawmillWoodNeeded;
+    [SerializeField] private TMP_Text sawmillLevel;
+    [SerializeField] private TMP_Text sawmillBuff;
+    [SerializeField] private TMP_Text sawmillIronNeeded;
+    [SerializeField] private TMP_Text sawmillWoodNeeded;
 
     // texts from Mine
-    [SerializeField] TMP_Text mineLevel;
-    [SerializeField] TMP_Text mineBuff;
-    [SerializeField] TMP_Text mineIronNeeded;
-    [SerializeField] TMP_Text mineWoodNeeded;
+    [SerializeField] private TMP_Text mineLevel;
+    [SerializeField] private TMP_Text mineBuff;
+    [SerializeField] private TMP_Text mineIronNeeded;
+    [SerializeField] private TMP_Text mineWoodNeeded;
 
     // texts from Market
-    [SerializeField] TMP_Text marketLevel;
-    [SerializeField] TMP_Text marketBuff;
-    [SerializeField] TMP_Text marketIronNeeded;
-    [SerializeField] TMP_Text marketWoodNeeded;
+    [SerializeField] private TMP_Text marketLevel;
+    [SerializeField] private TMP_Text marketBuff;
+    [SerializeField] private TMP_Text marketIronNeeded;
+    [SerializeField] private TMP_Text marketWoodNeeded;
 
     // texts from Wall
-    [SerializeField] TMP_Text wallLevel;
-    [SerializeField] TMP_Text wallBuff;
-    [SerializeField] TMP_Text wallIronNeeded;
-    [SerializeField] TMP_Text wallWoodNeeded;
+    [SerializeField] private TMP_Text wallLevel;
+    [SerializeField] private TMP_Text wallBuff;
+    [SerializeField] private TMP_Text wallIronNeeded;
+    [SerializeField] private TMP_Text wallWoodNeeded;
 
     //level up Buttons
-    [SerializeField] GameObject mainBuildingLevelUp;
-    [SerializeField] GameObject sawmillLevelUp;
-    [SerializeField] GameObject mineLevelUp;
-    [SerializeField] GameObject marketLevelUp;
-    [SerializeField] GameObject wallLevelUp;
+    [SerializeField] private GameObject mainBuildingLevelUp;
+    [SerializeField] private GameObject sawmillLevelUp;
+    [SerializeField] private GameObject mineLevelUp;
+    [SerializeField] private GameObject marketLevelUp;
+    [SerializeField] private GameObject wallLevelUp;
 
     private Boolean endGameTextShown;
-    [SerializeField] GameObject endGameText;
+    [SerializeField] private GameObject endGameText;
 
     private void Start()
     {
@@ -361,12 +362,12 @@ public class VillageMenus : MonoBehaviour
         if (nextRaid == 2)
         {
             villageStats.setNextRaid(3);
-            SceneManager.LoadScene(2);
+            _sceneTransition.loadSceneWithTransition(2);
         }
         else
         {
             villageStats.setNextRaid(2);
-            SceneManager.LoadScene(3);
+            _sceneTransition.loadSceneWithTransition(3);
         }
 
     }
@@ -390,6 +391,6 @@ public class VillageMenus : MonoBehaviour
     public void ExitToMenu()
     {
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene(0);
+        _sceneTransition.loadSceneWithTransition(0);
     }
 }

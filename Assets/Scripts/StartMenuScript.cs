@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class StartMenuScript : MonoBehaviour
 {
     [SerializeField] private VillageStatsScriptableObject _village;
+    [SerializeField] private SceneLoaderTransition _sceneTransition;
     [SerializeField] private GameObject _infoText;
     private bool infoEnabled;
 
@@ -17,7 +18,7 @@ public class StartMenuScript : MonoBehaviour
     public void StartGame()
     {
         _village.EarlyGameStart();
-        SceneManager.LoadScene(1);
+        _sceneTransition.loadSceneWithTransition(1);
     }
 
     public void ExitGame()
