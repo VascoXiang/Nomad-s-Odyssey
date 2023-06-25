@@ -129,6 +129,7 @@ public class VillageMenus : MonoBehaviour
                 villageStats.SawmillLevel1();
                 break;
             case 2:
+            case 3:
                 villageStats.SawmillLevel1();
                 villageStats.SawmillLevel2();
                 break;
@@ -139,6 +140,7 @@ public class VillageMenus : MonoBehaviour
                 villageStats.WallLevel1();
                 break;
             case 2:
+            case 3:
                 villageStats.WallLevel2();
                 break;
         }
