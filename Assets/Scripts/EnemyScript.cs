@@ -5,6 +5,10 @@ using TMPro;
 using UnityEngine.UI;
 using System;
 
+/// <summary>
+/// Class EnemyScript is responsible for all the movement and animations of the enemy
+/// 
+/// </summary>
 public class EnemyScript : MonoBehaviour
 {
     #region ATRIBUTES
@@ -39,12 +43,12 @@ public class EnemyScript : MonoBehaviour
     private bool _canSeePlayer;
     #endregion
 
-    
-    //[SerializeField]private TMP_Text enemy_name_ui;
-    //[SerializeField] private string enemy_name = "Enemy";
 
     #endregion
 
+    /// <summary>
+    /// Method start that initializes all the attributes 
+    /// </summary>
     public void Start()
     {
         _enemyMaxHealth = _enemy.MaxHealth;
@@ -57,9 +61,12 @@ public class EnemyScript : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(FOVRoutine());
 
-        //enemy_name_ui.text = enemy_name;
     }
 
+    /// <summary>
+    /// Method that has all the enemy intelligence, including it's patroling and if it sees the player or not,
+    /// also as the animations of attack and movement
+    /// </summary>
     private void Update()
     {
         if (_canSeePlayer)
@@ -96,6 +103,9 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Method that has the velocity of movement of the enemy, and which side he is seeing
+    /// </summary>
     private void movement()
     {
         if(gameObject.transform.rotation.eulerAngles.y == 180)
@@ -108,7 +118,10 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Method that subtracts health of the enemy
+    /// </summary>
+    /// <param name="damage">damage to take</param>
     public void TakeDamage(int damage)
     {
         _enemyCurrentHealth -= damage;
@@ -120,6 +133,10 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Method to attack the player with a bullet with a 3 second cooldown before shooting again
+    /// </summary>
+    /// <returns>return is only here so the enemy waits a few seconds before attacking again</returns>
     private IEnumerator Attack()
     {
         yield return new WaitForSeconds(0.5f);
@@ -129,7 +146,10 @@ public class EnemyScript : MonoBehaviour
         isAttacking = false;
     }
 
-
+    /// <summary>
+    /// Method to call the FieldOfViewCheck, it checks the FOV every 0.2 seconds
+    /// </summary>
+    /// <returns>return is only here to wait 0.2s time</returns>
     private IEnumerator FOVRoutine()
     {
         WaitForSeconds wait = new WaitForSeconds(0.2f);
@@ -141,6 +161,9 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Method to see if the player is inside the FOV of the enemy, also checks if there is any obstacle between the enemy and the player
+    /// </summary>
     private void FieldOfViewCheck()
     {
         Collider2D[] rangeChecks = Physics2D.OverlapCircleAll(transform.position, _radius, _targetMask);
@@ -166,25 +189,5 @@ public class EnemyScript : MonoBehaviour
         {
             _canSeePlayer = false;
         }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _radius);
-
-        Vector3 viewAngle1 = DirectionFromAngle(-transform.eulerAngles.y, -_angle / 2);
-        Vector3 viewAngle2 = DirectionFromAngle(-transform.eulerAngles.y, _angle / 2);
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(transform.position, transform.position + viewAngle1 * _radius);
-        Gizmos.DrawLine(transform.position, transform.position + viewAngle2 * _radius);
-    }
-
-    private Vector2 DirectionFromAngle(float eulerY, float angleInDegrees)
-    {
-        angleInDegrees += eulerY + 90;
-
-        return new Vector2(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }
 }
