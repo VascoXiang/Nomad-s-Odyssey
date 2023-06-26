@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 0
   buff: 1
-  ironRequirementLevel1: 200
-  ironRequirementLevel2: 400
-  ironRequirementLevel3: 750
+  ironRequirementLevel1: 250
+  ironRequirementLevel2: 550
+  ironRequirementLevel3: 1000
   woodRequirementLevel1: 200
   woodRequirementLevel2: 480
   woodRequirementLevel3: 1000
