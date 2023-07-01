@@ -141,6 +141,7 @@ public class VillageMenus : MonoBehaviour
                 break;
             case 2:
             case 3:
+                villageStats.WallLevel1();
                 villageStats.WallLevel2();
                 break;
         }
